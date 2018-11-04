@@ -9,7 +9,7 @@ Blazor is an experimental .NET web framework using C# and HTML that runs in the 
 
 Naturally, many components are at the beginning of their development.
 
-I tried to collect the 10 most interesting libraries with components for Blazor. Enjoy.
+I tried to collect the 6 most interesting libraries with components for Blazor. Enjoy.
 
 <!--more-->
 
