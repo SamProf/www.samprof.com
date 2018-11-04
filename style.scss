@@ -18,6 +18,12 @@ img {
   max-width: 100%;
 }
 
+
+video {
+  width: 100%    !important;
+  height: auto   !important;
+}
+
 // Fixes images in popup boxes from Google Translate
 .gmnoprint img {
   max-width: none;
