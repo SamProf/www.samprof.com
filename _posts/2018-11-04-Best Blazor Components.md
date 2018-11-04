@@ -27,7 +27,7 @@ Blazor components that implement Google’s Material Design, it’s the one of t
 
 ![MatBlazor](/images/2018-11-04 (2).png)
 
-
+<!--more-->
 
 ### [BlazorStrap](https://github.com/chanan/BlazorStrap)
 Bootstrap 4 Components for Blazor Framework. Really, I think, that they already implemented most of all components!
