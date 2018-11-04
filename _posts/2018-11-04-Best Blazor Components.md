@@ -11,6 +11,8 @@ Naturally, many components are at the beginning of their development.
 
 I tried to collect the 10 most interesting libraries with components for Blazor. Enjoy.
 
+<!--more-->
+
 ### [MatBlazor](https://github.com/BlazorComponents/MatBlazor)
 Blazor components that implement Google’s Material Design, it’s the one of the biggest component pack for Blazor now and it is growing fast. [Demo](https://blazorcomponents.github.io/MatBlazor/).
 -   MatCheckbox
@@ -26,8 +28,6 @@ Blazor components that implement Google’s Material Design, it’s the one of t
 -   MatChip
 
 ![MatBlazor](/images/2018-11-04 (2).png)
-
-<!--more-->
 
 ### [BlazorStrap](https://github.com/chanan/BlazorStrap)
 Bootstrap 4 Components for Blazor Framework. Really, I think, that they already implemented most of all components!
