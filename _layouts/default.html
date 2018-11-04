@@ -1,37 +1,40 @@
 <!DOCTYPE html>
-<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
-<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
-<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
+<!--[if IE 8]>
+<html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]>
+<html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en"> <!--<![endif]-->
 <head>
-  <title>{% if page.title %}{{ page.title }} – {% endif %}{{ site.name }} – {{ site.description }}</title>
+    <title>{% if page.title %}{{ page.title }} – {% endif %}{{ site.name }} – {{ site.description }}</title>
 
 
-  {% include meta.html %}
+    {% include meta.html %}
 
-  <!-- Meta -->
-  <!--<meta charset="utf-8">-->
-  <!--<meta http-equiv="X-UA-Compatible" content="IE=edge">-->
-  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
-  <!--<meta name="description" content="Responsive HTML5 Website landing Page for Developers">-->
-  <!--<meta name="author" content="3rd Wave Media">-->
-  <link rel="shortcut icon" href="/favicon.ico">
-  <!--<link href='https://fonts.googleapis.com/css?family=Lato:300,400,300italic,400italic' rel='stylesheet' type='text/css'>-->
-  <!--<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>-->
-  <!-- Global CSS -->
-  <link rel="stylesheet" href="/assets/plugins/bootstrap/css/bootstrap.min.css">
-  <!-- Plugins CSS -->
-  <link rel="stylesheet" href="/assets/plugins/font-awesome/css/font-awesome.min.css">
-  <!-- github acitivity css -->
-  <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/octicons/2.0.2/octicons.min.css">-->
-  <!--<link rel="stylesheet" href="https://caseyscarborough.github.io/github-activity/github-activity-0.1.0.min.css">-->
+    <!-- Meta -->
+    <!--<meta charset="utf-8">-->
+    <!--<meta http-equiv="X-UA-Compatible" content="IE=edge">-->
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+    <!--<meta name="description" content="Responsive HTML5 Website landing Page for Developers">-->
+    <!--<meta name="author" content="3rd Wave Media">-->
+    <link rel="shortcut icon" href="/favicon.ico">
+    <!--<link href='https://fonts.googleapis.com/css?family=Lato:300,400,300italic,400italic' rel='stylesheet' type='text/css'>-->
+    <!--<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>-->
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="/assets/plugins/bootstrap/css/bootstrap.min.css">
+    <!-- Plugins CSS -->
+    <link rel="stylesheet" href="/assets/plugins/font-awesome/css/font-awesome.min.css">
+    <!-- github acitivity css -->
+    <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/octicons/2.0.2/octicons.min.css">-->
+    <!--<link rel="stylesheet" href="https://caseyscarborough.github.io/github-activity/github-activity-0.1.0.min.css">-->
 
-  <!-- Theme CSS -->
-  <link id="theme-style" rel="stylesheet" href="/style.css">
-  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-  <![endif]-->
+    <!-- Theme CSS -->
+    <link id="theme-style" rel="stylesheet" href="/style.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
 
 </head>
 
@@ -39,75 +42,85 @@
 
 <!-- Fixed navbar -->
 <nav class="navbar navbar-inverse navbar-fixed-top">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="/">SamProf - Development</a>
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">SamProf - Development</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="/">Home</a></li>
+                <li><a href="/about">About</a></li>
+            </ul>
+        </div><!--/.nav-collapse -->
     </div>
-    <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="/">Home</a></li>
-        <li><a href="/about">About</a></li>
-      </ul>
-    </div><!--/.nav-collapse -->
-  </div>
 </nav>
 
 
 <!-- ******HEADER****** -->
 <!--<header class="header">-->
-  <!--<div class="container">-->
-    <!--<img class="profile-image img-responsive pull-left" src="/images/logo.jpg" alt="SamProf" />-->
-    <!--<div class="profile-content pull-left">-->
-      <!--<h1 class="name">SamProf</h1>-->
-      <!--<h2 class="desc">C# and JS Development</h2>-->
-      <!--&lt;!&ndash;<ul class="social list-inline">&ndash;&gt;-->
-        <!--&lt;!&ndash;<li><a href="#"><i class="fa fa-twitter"></i></a></li>&ndash;&gt;-->
-        <!--&lt;!&ndash;<li><a href="#"><i class="fa fa-google-plus"></i></a></li>&ndash;&gt;-->
-        <!--&lt;!&ndash;<li><a href="#"><i class="fa fa-linkedin"></i></a></li>&ndash;&gt;-->
-        <!--&lt;!&ndash;<li><a href="#"><i class="fa fa-github-alt"></i></a></li>&ndash;&gt;-->
-        <!--&lt;!&ndash;<li class="last-item"><a href="#"><i class="fa fa-hacker-news"></i></a></li>&ndash;&gt;-->
-      <!--&lt;!&ndash;</ul>&ndash;&gt;-->
-    <!--</div>&lt;!&ndash;//profile&ndash;&gt;-->
-    <!--&lt;!&ndash;<a class="btn btn-cta-primary pull-right" href="http://themes.3rdwavemedia.com/" target="_blank"><i class="fa fa-paper-plane"></i> Contact Me</a>&ndash;&gt;-->
-  <!--</div>&lt;!&ndash;//container&ndash;&gt;-->
+<!--<div class="container">-->
+<!--<img class="profile-image img-responsive pull-left" src="/images/logo.jpg" alt="SamProf" />-->
+<!--<div class="profile-content pull-left">-->
+<!--<h1 class="name">SamProf</h1>-->
+<!--<h2 class="desc">C# and JS Development</h2>-->
+<!--&lt;!&ndash;<ul class="social list-inline">&ndash;&gt;-->
+<!--&lt;!&ndash;<li><a href="#"><i class="fa fa-twitter"></i></a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;<li><a href="#"><i class="fa fa-google-plus"></i></a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;<li><a href="#"><i class="fa fa-linkedin"></i></a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;<li><a href="#"><i class="fa fa-github-alt"></i></a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;<li class="last-item"><a href="#"><i class="fa fa-hacker-news"></i></a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;</ul>&ndash;&gt;-->
+<!--</div>&lt;!&ndash;//profile&ndash;&gt;-->
+<!--&lt;!&ndash;<a class="btn btn-cta-primary pull-right" href="http://themes.3rdwavemedia.com/" target="_blank"><i class="fa fa-paper-plane"></i> Contact Me</a>&ndash;&gt;-->
+<!--</div>&lt;!&ndash;//container&ndash;&gt;-->
 <!--</header>&lt;!&ndash;//header&ndash;&gt;-->
 
 <div class="container sections-wrapper">
-  <div class="row">
-    <div class="primary col-md-8 col-sm-12 col-xs-12">
-      {{ content }}
-    </div><!--//primary-->
-    <div class="secondary col-md-4 col-sm-12 col-xs-12">
-      <aside class="info aside section">
-        <div class="section-inner">
-          <h2 class="heading sr-only">About me</h2>
-          <div class="content">
-            <img src="/images/logo.jpg">
-            <ul class="list-unstyled">
-              <li><i class="fa fa-map-marker"></i><span class="sr-only">Location:</span>Saarbrucken, DE</li>
-              <li><i class="fa fa-envelope-o"></i><span class="sr-only">Email:</span><a href="#">wsamprof@gmail.com</a></li>
-              <li><i class="fa fa-link"></i><span class="sr-only">Website:</span><a href="#">http://samprof.com</a></li>
-            </ul>
-          </div><!--//content-->
-        </div><!--//section-inner-->
-      </aside><!--//aside-->
+    <div class="row">
+        <div class="primary col-md-8 col-sm-12 col-xs-12">
+            {{ content }}
+        </div><!--//primary-->
+        <div class="secondary col-md-4 col-sm-12 col-xs-12">
+            <aside class="info aside section">
+                <div class="section-inner">
+                    <h2 class="heading sr-only">About me</h2>
+                    <div class="content">
+                        <div style="align-content: center;">
+                            <img src="/images/logo.jpg" style="width: 200px; padding:10px;">
+                        </div>
+
+                        <ul class="list-unstyled">
+                            <li><i class="fa fa-map-marker"></i><span class="sr-only">Location:</span>Saarbrucken, DE
+                            </li>
+                            <li><i class="fa fa-envelope-o"></i><span class="sr-only">Email:</span><a href="#">wsamprof@gmail.com</a>
+                            </li>
+                            <li><i class="fa fa-link"></i><span class="sr-only">Website:</span><a href="#">http://samprof.com</a>
+                            </li>
+                        </ul>
+                    </div><!--//content-->
+                </div><!--//section-inner-->
+            </aside><!--//aside-->
 
 
-    </div><!--//secondary-->
-  </div><!--//row-->
+        </div><!--//secondary-->
+    </div><!--//row-->
 </div><!--//masonry-->
 
 <!-- ******FOOTER****** -->
 <footer class="footer">
-  <div class="container text-center">
-    <small class="copyright">Designed with <i class="fa fa-heart"></i> by <a href="http://themes.3rdwavemedia.com" target="_blank">3rd Wave Media</a> for developers</small>
-  </div><!--//container-->
+    <div class="container text-center">
+        <small class="copyright">Designed with <i class="fa fa-heart"></i> by <a href="http://themes.3rdwavemedia.com"
+                                                                                 target="_blank">3rd Wave Media</a> for
+            developers
+        </small>
+    </div><!--//container-->
 </footer><!--//footer-->
 
 <!-- Javascript -->
