@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 6 Best Blazor Component (November 2018)
+title: 6 Best Blazor Components Libraries (November 2018)
 ---
 
 ![](/images/blazor.png)
