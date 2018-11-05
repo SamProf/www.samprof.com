@@ -1,6 +1,7 @@
 ---
-layout: post
 title: 6 Best Blazor Components Libraries (November 2018)
+date: 2018-11-04 00:00:00 Z
+layout: post
 ---
 
 ![](/images/blazor.png)

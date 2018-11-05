@@ -1,6 +1,7 @@
 ---
-layout: post
 title: Мир ботов и генетический алгоритм
+date: 2018-05-07 00:00:00 Z
+layout: post
 ---
 
 ![](/images/Screenshot 2018-05-06 19.30.59.png)
