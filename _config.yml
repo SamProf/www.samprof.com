@@ -29,7 +29,7 @@ footer-links:
 disqus: www-samprof-com
 google_analytics: UA-118748625-1
 url: https://www.samprof.com
-baseurl: ''
+baseurl: 
 permalink: "/:year/:month/:day/:slug"
 version: v1.2.0
 kramdown:
@@ -38,7 +38,7 @@ kramdown:
   syntax_highlighter_opts:
     css_class: highlight
 sass:
-  style: :expanded
+  style: expanded
 gems:
 - jekyll-sitemap
 - jekyll-feed
