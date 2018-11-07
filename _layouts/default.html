@@ -6,7 +6,7 @@
 <!--[if !IE]><!-->
 <html lang="en"> <!--<![endif]-->
 <head>
-    <title>{% if page.title %}{{ page.title }} – {% endif %}{% if page.tags %}{% for tag in page.tags %}#{{ tag }}{% endfor %}{% endif %}{{ site.name }} – {{ site.description }}</title>
+    <title>{% if page.title %}{{ page.title }} – {% endif %}{% if page.tags %}{% for tag in page.tags %}#{{ tag }} {% endfor %}{% endif %} {{ site.name }} – {{ site.description }}</title>
 
 
     {% include meta.html %}
