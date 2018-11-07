@@ -8,8 +8,7 @@ layout: default
     <div class="content">
       {{ content }}
 
-      
-      <div>Tags:    {% for tag in page.tags %}{{ tag }}{% endfor %} </div>      
+       {% if page.comments %}<div>Tags:    {% for tag in page.tags %}{{ tag }}{% endfor %} </div>{% endif %}
       
       
       <!-- AddToAny BEGIN -->
