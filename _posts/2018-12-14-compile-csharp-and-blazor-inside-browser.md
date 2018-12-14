@@ -28,29 +28,71 @@ Install-Package Microsoft.CodeAnalysis.CSharp
 Подготовим стартовую страницу.
 ```
 @page "/"
+@inject CompileService service
 
 <h1>Compile and Run C# in Browser</h1>
 
 <form>
     <div class="form-group">
         <label for="exampleFormControlTextarea1">C# Code</label>
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="20" bind="@CsCode"></textarea>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="10" bind="@CsCode"></textarea>
     </div>
     <button type="button" class="btn btn-primary" onclick="@Run">Run</button>
     <div>
-        @Result
+        @ResultText
+    </div>
+    <div>
+        @CompileText
     </div>
 </form>
 
 @functions
 {
     string CsCode { get; set; }
-    string Result { get; set; }
+    string ResultText { get; set; }
+    string CompileText { get; set; }
 
-    public void Run()
+    public async Task Run()
     {
-    // todo: Compile and run C#
+        ResultText = await service.CompileAndRun(CsCode);
+        CompileText = string.Join("\r\n", service.CompileLog);
+        this.StateHasChanged();
     }
-
 }
+```
+
+Для начала нам надо распарсить строку а асбтрактное синтасическое дерево, для этого Roslyn для C# есть метод:
+```
+SyntaxTree syntaxTree = CSharpSyntaxTree.ParseText(code);
+```
+Уже на этом этапе мы уже можем обнаружить грубые ошибки компиляции, вычитав диагностику парсера.
+```
+            foreach (var diagnostic in syntaxTree.GetDiagnostics())
+            {
+                CompileLog.Add(diagnostic.ToString());
+            }
+```
+
+И сразу мы можем быть готовы к тому, что бы выполнить компиляцию в сборку в бинарный поток.
+```
+            CSharpCompilation compilation = CSharpCompilation.Create("CompileBlazorInBlazor.Demo", new[] {syntaxTree},
+                references, new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary));
+
+            using (MemoryStream stream = new MemoryStream())
+            {
+                EmitResult result = compilation.Emit(stream);
+            }
+
+```
+
+Проблема тут может быть в том, что нужно получить `references` - список метаданных подключенных библиотек. Попробывать прочитать файлы уже подключенных по пути `Assembly.Location` не получилось, так мы в браузере и файловой системы тут нет. Я уверен, что есть более эффективный способ решения этой проблемы, но цель этой статьи концептуальная возможность. Поэтому я решиил, а почему бы не вычитать это библиотки снова по Http и сделать это толко при первом запуске компиляции?
+
+```
+                foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
+                {
+                    references.Add(
+                        MetadataReference.CreateFromStream(
+                            await this._http.GetStreamAsync("/_framework/_bin/" + assembly.Location)));
+                }
+
 ```
