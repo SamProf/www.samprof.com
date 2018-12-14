@@ -141,41 +141,22 @@ microsoft.aspnetcore.blazor.build\0.7.0\tools\Microsoft.CodeAnalysis.Razor.dll
 
 Все, что осталось, это загузить этот комопнент, в текущее приложение. Есть несколько способов как это сделать, но мне нравится - создав свой `RenderFragment`.
 ```
-@page "/blazor"
 @inject CompileService service
-<h1>Compile and Run Blazor in Browser</h1>
 
-<div>
-    <div class="form-group">
-        <label for="exampleFormControlTextarea1">Blazor Code</label>
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="10" bind="@Code"></textarea>
-    </div>
-    <button type="button" class="btn btn-primary" onclick="@Run">Run</button>
     <div class="card">
         <div class="card-body">
             @Result
         </div>
     </div>
-    <div class="card">
-        <div class="card-body">
-            <pre>@CompileText</pre>
-        </div>
-    </div>
-</div>
 
 @functions
 {
     RenderFragment Result = null;
-    string Code { get; set; }
-    string CompileText { get; set; }
+    string Code { get; set; }    
 
     public async Task Run()
     {
-        try
-        {
-            service.CompileLog = new List<string>();
             var type = await service.CompileBlazor(Code);
-
             if (type != null)
             {         
                 Result = builder =>
@@ -188,14 +169,7 @@ microsoft.aspnetcore.blazor.build\0.7.0\tools\Microsoft.CodeAnalysis.Razor.dll
             {             
                 Result = null;
             }
-        }        
-        finally
-        {
-            CompileText = string.Join("\r\n", service.CompileLog);
-            this.StateHasChanged();
-        }
     }
-
 }
 
 ```
