@@ -34,19 +34,23 @@ Install-Package Microsoft.CodeAnalysis.CSharp
 
 <h1>Compile and Run C# in Browser</h1>
 
-<form>
+<div>
     <div class="form-group">
         <label for="exampleFormControlTextarea1">C# Code</label>
         <textarea class="form-control" id="exampleFormControlTextarea1" rows="10" bind="@CsCode"></textarea>
     </div>
     <button type="button" class="btn btn-primary" onclick="@Run">Run</button>
-    <div>
-        @ResultText
+    <div class="card">
+        <div class="card-body">
+            <pre>@ResultText</pre>
+        </div>
     </div>
-    <div>
-        @CompileText
+    <div class="card">
+        <div class="card-body">
+            <pre>@CompileText</pre>
+        </div>
     </div>
-</form>
+</div>
 
 @functions
 {
@@ -63,9 +67,9 @@ Install-Package Microsoft.CodeAnalysis.CSharp
 }
 ```
 
-Для начала нам надо распарсить строку а асбтрактное синтасическое дерево, для этого Roslyn для C# есть метод:
+Для начала нам надо распарсить строку в асбтрактное синтасическое дерево. Так как в следующем этапе мы будем компилировать Blazor компоненты - нам нужен самая последняя (`LanguageVersion.Latest`) версия языка. Для этого Roslyn для C# есть метод:
 ```
-SyntaxTree syntaxTree = CSharpSyntaxTree.ParseText(code);
+SyntaxTree syntaxTree = CSharpSyntaxTree.ParseText(code, new CSharpParseOptions(LanguageVersion.Latest));
 ```
 Уже на этом этапе мы уже можем обнаружить грубые ошибки компиляции, вычитав диагностику парсера.
 ```
@@ -112,24 +116,23 @@ SyntaxTree syntaxTree = CSharpSyntaxTree.ParseText(code);
 И все! На данном этапе мы скомпилировали и выполнили C# код прямо в браузере. Наша программа может быть сколь-угодно сложная, состоять из нескольких файлов и использовать другие .NET библиотеки. Разве это не здорово? Но я хочу пойти дальше - нам нужно идти глубже.
 
 # Компиляция и запуск Blazor компонента в браузере.
-На самом деле компоненты Blazor - это модифицированные `Razor` шаблоны. Поэтому для того, что бы скомпилировать Blazor комопнент, нам нужно развернуть целую среду для компиляции Razor шаблонов и настроив дополнение для Blazor. Для начала установим пакет дополненния из Nuget. Установка этого пакета так же установит все остальные необходмые модули.
+На самом деле компоненты Blazor - это модифицированные `Razor` шаблоны. Поэтому для того, что бы скомпилировать Blazor комопнент, нам нужно развернуть целую среду для компиляции Razor шаблонов и настроив дополнение для Blazor. На самом деле для того, что бы скомпилировать Blazor нам нужно установить пакет `Microsoft.AspNetCore.Blazor.Build` из nuget. Однако, добавить его в наш проект Blazor не получиться, так как потом линкер не сможет скомпилировать наш проект. Поэтому нужно его скачать, а потом руками добавить 3 библиотеки.
 ```
-Install-Package Microsoft.AspNetCore.Blazor.Razor.Extensions
+microsoft.aspnetcore.blazor.build\0.7.0\tools\Microsoft.AspNetCore.Blazor.Razor.Extensions.dll
+microsoft.aspnetcore.blazor.build\0.7.0\tools\Microsoft.AspNetCore.Razor.Language.dll
+microsoft.aspnetcore.blazor.build\0.7.0\tools\Microsoft.CodeAnalysis.Razor.dll
 ```
-
 Создадим ядро для компиляции `Razor` и модифицируем его для Blazor, так как по умолчанию ядро будет генерировать код Razor страниц.
 ```
             var engine = RazorProjectEngine.Create(BlazorExtensionInitializer.DefaultConfiguration, fileSystem, b =>
                 {
-                    BlazorExtensionInitializer.Register(b);
-
-                    b.Features.Add(new CompilationTagHelperFeature());
+                    BlazorExtensionInitializer.Register(b);                    
                 });
 ```
 Для выполненния не хвтает только `fileSystem` - это такая асбтракция над файловой системой. Я реализовал пустую файловую систему, однако, если вы хотите компилировать сложные проекты с поддержкой `_ViewImports.cshtml` - то нужно просто реализовать более чуть более сложную структуру в памяти. 
 Теперь сгенерируем код из Blazor компонента C# код.
 ```
-            var file = new MemoryRazorProjectItem(Encoding.UTF8.GetBytes(code));
+            var file = new MemoryRazorProjectItem(code);
             var doc = engine.Process(file).GetCSharpDocument();
             var csCode = doc.GeneratedCode;
 ```
@@ -137,4 +140,63 @@ Install-Package Microsoft.AspNetCore.Blazor.Razor.Extensions
 Теперь мы получили код C# компонента, который можно скомпилировать так же, как и в предыдущем примере. Нужно распарсить `SyntaxTree`, потом скомпилировать Assembly, загрузить её в текущий AppDomain и найти тип комопнента. Все это мы уже сделали в предыдущем примере.
 
 Все, что осталось, это загузить этот комопнент, в текущее приложение. Есть несколько способов как это сделать, но мне нравится - создав свой `RenderFragment`.
+```
+@page "/blazor"
+@inject CompileService service
+<h1>Compile and Run Blazor in Browser</h1>
+
+<div>
+    <div class="form-group">
+        <label for="exampleFormControlTextarea1">Blazor Code</label>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="10" bind="@Code"></textarea>
+    </div>
+    <button type="button" class="btn btn-primary" onclick="@Run">Run</button>
+    <div class="card">
+        <div class="card-body">
+            @Result
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <pre>@CompileText</pre>
+        </div>
+    </div>
+</div>
+
+@functions
+{
+    RenderFragment Result = null;
+    string Code { get; set; }
+    string CompileText { get; set; }
+
+    public async Task Run()
+    {
+        try
+        {
+            service.CompileLog = new List<string>();
+            var type = await service.CompileBlazor(Code);
+
+            if (type != null)
+            {         
+                Result = builder =>
+                {
+                    builder.OpenComponent(0, type);
+                    builder.CloseComponent();
+                };
+            }
+            else
+            {             
+                Result = null;
+            }
+        }        
+        finally
+        {
+            CompileText = string.Join("\r\n", service.CompileLog);
+            this.StateHasChanged();
+        }
+    }
+
+}
+
+```
 
