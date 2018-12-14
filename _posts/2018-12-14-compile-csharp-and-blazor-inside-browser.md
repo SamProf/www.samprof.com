@@ -24,3 +24,33 @@ Microsoft не стоит на месте и активно пытается п�
 ```
 Install-Package Microsoft.CodeAnalysis.CSharp
 ```
+
+Подготовим стартовую страницу.
+```
+@page "/"
+
+<h1>Compile and Run C# in Browser</h1>
+
+<form>
+    <div class="form-group">
+        <label for="exampleFormControlTextarea1">C# Code</label>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="20" bind="@CsCode"></textarea>
+    </div>
+    <button type="button" class="btn btn-primary" onclick="@Run">Run</button>
+    <div>
+        @Result
+    </div>
+</form>
+
+@functions
+{
+    string CsCode { get; set; }
+    string Result { get; set; }
+
+    public void Run()
+    {
+    // todo: Compile and run C#
+    }
+
+}
+```
