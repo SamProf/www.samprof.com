@@ -187,4 +187,5 @@ microsoft.aspnetcore.blazor.build\0.7.0\tools\Microsoft.CodeAnalysis.Razor.dll
 Все эти проблемы мной уже решены и это тема для отдельной статьи.
 
 GIT: https://github.com/BlazorComponents/CompileBlazorInBlazor
+
 Demo: https://blazorcomponents.github.io/CompileBlazorInBlazor/
