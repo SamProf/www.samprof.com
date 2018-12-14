@@ -96,3 +96,15 @@ SyntaxTree syntaxTree = CSharpSyntaxTree.ParseText(code);
                 }
 
 ```
+
+Из `EmitResult` мы можем узнать была ли успешной компиляция, а так же диагностические ошибки.
+Дале, все что нам нужно - это загрузить `Assembly` в текущий `AppDomain` и выполнить скомпилированный нами код. К сожалению внутри браузера у нас нет возможности создавать несколько `AppDomain`, поэтому безопасно загрузить и выгрузить эту `Assembly` у нас не получится.
+```
+                Assembly assemby = AppDomain.CurrentDomain.Load(stream.ToArray());
+                var type = assemby.GetExportedTypes().FirstOrDefault();
+                var methodInfo = type.GetMethod("Run");
+                var instance = Activator.CreateInstance(type);
+                return (string) methodInfo.Invoke(instance, new object[] {"my UserName", 12});
+```
+
+И все! На данном этапе мы скомпилировали и выполнили C# код прямо в браузере.
