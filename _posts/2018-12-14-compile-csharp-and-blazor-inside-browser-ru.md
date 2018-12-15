@@ -1,5 +1,6 @@
 ---
 title: Компиляция и запуск C# и Blazor внутри браузера
+date: 2018-12-14 00:00:00 Z
 tags:
 - blazor
 - csharp

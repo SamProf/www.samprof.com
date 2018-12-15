@@ -1,5 +1,6 @@
 ---
 title: C# and Blazor Compilation inside Browser
+date: 2018-12-15 00:00:00 Z
 tags:
 - blazor
 - csharp
