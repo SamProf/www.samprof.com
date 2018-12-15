@@ -10,7 +10,7 @@ layout: post
 
 # Introduction
 
-![](/images/We_need_to_go_deeper.jpg)
+![](/images/compile-blazor-in-browser.png)
 
 If you are a web developer and are developing for a browser, then you are shure know JS, which can be executed inside a browser. There is an opinion that JS is not very suitable for complex calculations and algorithms. And although in recent years JS has made a big breakthrough in performance and wide of use, many developers continue to dream of launching a system language inside the browser. In the near future, the game may change thanks to WebAssembly.
 
@@ -115,7 +115,9 @@ Now we need to load `Assembly` into the current` AppDomain` and execute the comp
 
 
 ![](/images/2018-12-15.png)
-At this stage, we compiled and executed C # code directly in the browser. A program can consist of several files and use other .NET libraries. Is not that great? Now we go further.
+At this stage, we compiled and executed C # code directly in the browser. A program can consist of several files and use other .NET libraries. Is not that great? Now we need to fo deeper.
+
+![](/images/We_need_to_go_deeper.jpg)
 
 # Compiling and running Blazor Components in a browser
 Blazor components are modified `Razor` templates. To compile the Blazor component, you need to create a whole environment for compiling Razor templates and set up extensions for Blazor. You need to install the `Microsoft.AspNetCore.Blazor.Build` package from nuget. However, adding it to our Blazor project will not work, because then the linker will not can to compile the project. Therefore, you need to download it, and then manually add 3 libraries.
