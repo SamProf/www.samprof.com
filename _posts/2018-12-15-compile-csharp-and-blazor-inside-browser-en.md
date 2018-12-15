@@ -1,33 +1,33 @@
 ---
-title: Компиляция и запуск C# и Blazor внутри браузера
+title: C# and Blazor Compilation inside Browser
 tags:
 - blazor
 - csharp
-- ru
+- en
 - webassembly
 layout: post
 ---
 
-# Введение
+# Introduction
 
 ![](/images/We_need_to_go_deeper.jpg)
 
-Если вы Web-разработчик и ведете разработку для браузера, то вы точно знакомы с JS, который может исполняться внутри браузера. Существует мнение, что JS не сильно подходит для сложных вычислений и алгоритмов. И хотя в последние годы JS cделал большой рывок в производительности и широте использования, многие программисты продолжают мечтать запустить системный язык внутри браузера. В ближайшее время игра может поменяться благодаря WebAssembly.
+If you are a web developer and are developing for a browser, then you are shure know JS, which can be executed inside a browser. There is an opinion that JS is not very suitable for complex calculations and algorithms. And although in recent years JS has made a big breakthrough in performance and wide of use, many developers continue to dream of launching a system language inside the browser. In the near future, the game may change thanks to WebAssembly.
 
-Microsoft не стоит на месте и активно пытается портировать .NET в WebAssembly. Как один из результатов мы получили новый фреймворк для клиенской разработки - Blazor. Пока не совсем очевидно, сможет ли Blazor за счет WebAssembly быть быстрее современных JS - фреймворков типа React, Angular, Vue. Но он точно имеет большое преимущество - разработка на C#, а так же весь мир .NET Core может быть использован внутри приложения. 
+Microsoft is not standing on place and actively trying to port .NET to WebAssembly. As one of the results, we received a new framework for client-side development - Blazor. It is not quite clear yet whether Blazor can be faster than modern JS frameworks like React, Angular, Vue due to WebAssembly. But it definitely has a big advantage - development in C # as well as the whole .NET Core world can be used inside the application.
 
-# Компиляция и выполение C#
-Процесс компиляции и выполнения такого сложного языка как C# - это сложная и трудоемкая задача. `А можно ли внутри браузера скомпилировать и выполнить С#?`-  Это зависит от возможностей технологии (а точнее, ядра). Однако в Microsoft, как оказалось, уже все подготовили для нас.
+# Compiling and running C# in a browser
+The process of compiling and executing such a complex language as C # is a complex and time-consuming task. `Is it possible to compile and execute C # inside the browser?` However, Microsoft, as it turned out, had already prepared everything for us.
 
-Для начала создадим Blazor приложение.
+First, let's create a Blazor app.
 ![Create Blazor Application](/images/2018-12-14.png)
 
-После этого нужно установить Nuget - пакет для анализа и компиляции C#.
+After that, you need to install Nuget package for analyzing and compiling C #.
 ```
 Install-Package Microsoft.CodeAnalysis.CSharp
 ```
 
-Подготовим стартовую страницу.
+Let's prepare the start page.
 ```
 @page "/"
 @inject CompileService service
@@ -67,11 +67,11 @@ Install-Package Microsoft.CodeAnalysis.CSharp
 }
 ```
 
-Для начала надо распарсить строку в абстрактное синтаксическое дерево. Так как в следующем этапе мы будем компилировать Blazor компоненты - нам нужна самая последняя (`LanguageVersion.Latest`) версия языка. Для этого в Roslyn для C# есть метод:
+First you need to parse the string into an abstract syntax tree. Since in the next step we will be compiling the Blazor components, we need the latest (`LanguageVersion.Latest`) version of the language. For this, Roslyn for C # has a method:
 ```
 SyntaxTree syntaxTree = CSharpSyntaxTree.ParseText(code, new CSharpParseOptions(LanguageVersion.Latest));
 ```
-Уже на этом этапе можно обнаружить грубые ошибки компиляции, вычитав диагностику парсера.
+Already at this stage, you can detect compilation errors by reading the parser diagnostics.
 ```
             foreach (var diagnostic in syntaxTree.GetDiagnostics())
             {
@@ -79,7 +79,7 @@ SyntaxTree syntaxTree = CSharpSyntaxTree.ParseText(code, new CSharpParseOptions(
             }
 ```
 
-Далее выполняем компиляцию `Assembly` в бинарный поток.
+Next, compile `Assembly` into a memory stream.
 ```
             CSharpCompilation compilation = CSharpCompilation.Create("CompileBlazorInBlazor.Demo", new[] {syntaxTree},
                 references, new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary));
@@ -91,7 +91,7 @@ SyntaxTree syntaxTree = CSharpSyntaxTree.ParseText(code, new CSharpParseOptions(
 
 ```
 
-Следует учесть, что нужно получить `references` - список метаданных подключенных библиотек. Но прочитать эти файлы по пути `Assembly.Location` не получилось, так как в браузере файловой системы нет. Возможно, есть более эффективный способ решения этой проблемы, но цель данной статьи - концептуальная возможность, поэтому скачаем эти библиотки снова по Http и сделаем это только при первом запуске компиляции.
+Note that you need to get the `references` - list of the metadata of the connected Assemblies. But reading these files along the path `Assembly.Location` did not work, because there is no file system in the browser. Perhaps there is a more effective way to solve this problem, but the goal of this article is a conceptual possibility, so we download these libraries again via Http and do it only when we first start compiling.
 
 ```
                 foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
@@ -103,8 +103,8 @@ SyntaxTree syntaxTree = CSharpSyntaxTree.ParseText(code, new CSharpParseOptions(
 
 ```
 
-Из `EmitResult` можно узнать была ли успешной компиляция, а так же получить диагностические ошибки.
-Теперь нужно загрузить `Assembly` в текущий `AppDomain` и выполнить скомпилированный код. К сожалению, внутри браузера  нет возможности создавать несколько `AppDomain`, поэтому безопасно загрузить и выгрузить `Assembly` не получится.
+From `EmitResult` you can find out if the compilation was successful, as well as get diagnostic errors.
+Now we need to load `Assembly` into the current` AppDomain` and execute the compiled code. Unfortunately, there is no possibility to create several `AppDomain` inside the browser, so it is safe to load and unload` Assembly`.
 ```
                 Assembly assemby = AppDomain.CurrentDomain.Load(stream.ToArray());
                 var type = assemby.GetExportedTypes().FirstOrDefault();
@@ -115,33 +115,34 @@ SyntaxTree syntaxTree = CSharpSyntaxTree.ParseText(code, new CSharpParseOptions(
 
 
 ![](/images/2018-12-15.png)
-На данном этапе мы скомпилировали и выполнили C# код прямо в браузере. Программа может состоять из нескольких файлов и использовать другие .NET библиотеки. Разве это не здорово? Теперь идем дальше.
+At this stage, we compiled and executed C # code directly in the browser. A program can consist of several files and use other .NET libraries. Is not that great? Now we go further.
 
-# Компиляция и запуск Blazor компонента в браузере.
-Компоненты Blazor - это модифицированные `Razor` шаблоны. Поэтому чтобы скомпилировать Blazor комопнент, нужно развернуть целую среду для компиляции Razor шаблонов и настроить расширения для Blazor. Нужно установить пакет `Microsoft.AspNetCore.Blazor.Build` из nuget. Однако, добавить его в наш проект Blazor не получится, так как потом линкер не сможет скомпилировать проект. Поэтому нужно его скачать, а потом вручную добавить 3 библиотеки.
+# Compiling and running Blazor Components in a browser
+Blazor components are modified `Razor` templates. To compile the Blazor component, you need to create a whole environment for compiling Razor templates and set up extensions for Blazor. You need to install the `Microsoft.AspNetCore.Blazor.Build` package from nuget. However, adding it to our Blazor project will not work, because then the linker will not can to compile the project. Therefore, you need to download it, and then manually add 3 libraries.
+
 ```
 microsoft.aspnetcore.blazor.build\0.7.0\tools\Microsoft.AspNetCore.Blazor.Razor.Extensions.dll
 microsoft.aspnetcore.blazor.build\0.7.0\tools\Microsoft.AspNetCore.Razor.Language.dll
 microsoft.aspnetcore.blazor.build\0.7.0\tools\Microsoft.CodeAnalysis.Razor.dll
 ```
-Создадим ядро для компиляции `Razor` и модифицируем его для Blazor, так как по умолчанию ядро будет генерировать код Razor страниц.
+Create engine to compile `Razor` and modify it for Blazor, since by default the engine will generate Razor code for the pages.
 ```
             var engine = RazorProjectEngine.Create(BlazorExtensionInitializer.DefaultConfiguration, fileSystem, b =>
                 {
                     BlazorExtensionInitializer.Register(b);                    
                 });
 ```
-Для выполнения не хватает только `fileSystem` - это абстракция над файловой системой. Мы реализовали пустую файловую систему, однако, если вы хотите компилировать сложные проекты с поддержкой `_ViewImports.cshtml` - то нужно реализовать более сложную структуру в памяти. 
-Теперь сгенерируем код из Blazor компонента C# код.
+Only the `fileSystem` is missing for execution - it is an abstraction over the file system. We have implemented an empty file system, however, if you want to compile complex projects with support for `_ViewImports.cshtml`, then you need to implement a more complex structure in memory.
+Now we will generate the code from the Blazor component, the C # code.
 ```
             var file = new MemoryRazorProjectItem(code);
             var doc = engine.Process(file).GetCSharpDocument();
             var csCode = doc.GeneratedCode;
 ```
-Из `doc` можно также получить диагностические сообщения о результатах генерации C# код из Blazor компонента.
-Теперь мы получили код C# компонента. Нужно распарсить `SyntaxTree`, потом скомпилировать Assembly, загрузить её в текущий AppDomain и найти тип компонента. Так же как в предыдущем примере.
+From `doc` you can also get diagnostic messages about the results of generating C# code from the Blazor component.
+Now we got the code for the C# component. You need to parse `SyntaxTree`, then compile Assembly, load it into the current `AppDomain` and find the `Type` of the component. Same as in the previous example.
 
-Осталось загрузить этот компонент в текущее приложение. Есть несколько способов, как это сделать, например, создав свой `RenderFragment`.
+It remains to load this component into the current application. There are several ways to do this, for example, by creating your `RenderFragment`.
 ```
 @inject CompileService service
 
@@ -179,14 +180,14 @@ microsoft.aspnetcore.blazor.build\0.7.0\tools\Microsoft.CodeAnalysis.Razor.dll
 ![](/images/2018-12-15-2.png)
 
 
-# Заключение
+# Conclusion
 
-Мы скомпилировали и запустили в браузере Blazor компонент. Очевидно, что полноценная компиляция динамического кода C# прямо внутри браузера может впечатлить любого программиста.
-Но тут следует учитывать такие "подводные камни":
-- Для поддержки двунаправленного биндинга `bind` нужны дополнительные расширения и библиотеки. 
-- Для поддержки `async, await`, аналогично подключаем доп. библиотеки
-- Для компиляции связанных Blazor компонентов потребуется двухэтапная компиляция.
-Все эти проблемы уже решены и это тема для отдельной статьи.
+We compiled and launched the Blazor component in the browser. Obviously, a full compilation of dynamic C# code right inside the browser can impress any developer.
+But here it is necessary to take into account such "pitfalls":
+- To support bidirectional bindings, `bind` needs additional extensions and libraries.
+- To support `async, await`, similarly connect extension libraries
+- Compiling nested Blazor components will require a two-step compilation.
+All these problems have already been solved and this is a topic for a separate article.
 
 GIT: https://github.com/BlazorComponents/CompileBlazorInBlazor
 
