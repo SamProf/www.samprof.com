@@ -186,7 +186,7 @@ It remains to load this component into the current application. There are severa
 
 We compiled and launched the Blazor component in the browser. Obviously, a full compilation of dynamic C# code right inside the browser can impress any developer.
 But here it is necessary to take into account such "pitfalls":
-- To support bidirectional bindings, `bind` needs additional extensions and libraries.
+- To support two-way bindings, `bind` needs additional extensions and libraries.
 - To support `async, await`, similarly connect extension libraries
 - Compiling nested Blazor components will require a two-step compilation.
 All these problems have already been solved and this is a topic for a separate article.
