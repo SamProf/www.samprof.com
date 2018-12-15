@@ -192,6 +192,6 @@ But here it is necessary to take into account such "pitfalls":
 - Compiling nested Blazor components will require a two-step compilation.
 All these problems have already been solved and this is a topic for a separate article.
 
-GIT: https://github.com/BlazorComponents/CompileBlazorInBlazor
+GIT: [https://github.com/BlazorComponents/CompileBlazorInBlazor](https://github.com/BlazorComponents/CompileBlazorInBlazor)
 
-Demo: https://blazorcomponents.github.io/CompileBlazorInBlazor/
+Demo: [https://blazorcomponents.github.io/CompileBlazorInBlazor/](https://blazorcomponents.github.io/CompileBlazorInBlazor/)
