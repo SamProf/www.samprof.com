@@ -1,17 +1,6 @@
 ---
 ---
 
-//
-// IMPORTS
-//
-
-
-// Syntax highlighting @import is at the bottom of this file
-
-/**************/
-/* BASE RULES */
-/**************/
-
 img {
   max-width: 100%;
 }
@@ -20,20 +9,6 @@ iframe {
   max-width: 100%;
 }
 
-// Fixes images in popup boxes from Google Translate
-.gmnoprint img {
-  max-width: none;
-}
-
-// Settled on moving the import of syntax highlighting to the bottom of the CSS
-// ... Otherwise it really bloats up the top of the CSS file and makes it difficult to find the start
-@import "highlights";
-
-
-
-
-
-// from bootstrup blog
 /* stylelint-disable selector-list-comma-newline-after */
 
 body {
@@ -42,3 +17,9 @@ body {
 .starter-template {
   padding: 3rem 1.5rem;
 }
+
+
+
+
+
+@import "highlights";
