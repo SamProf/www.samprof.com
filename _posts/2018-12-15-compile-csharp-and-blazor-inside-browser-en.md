@@ -17,6 +17,9 @@ If you are a web developer and are developing for a browser, then you are shure 
 
 Microsoft is not standing on place and actively trying to port .NET to WebAssembly. As one of the results, we received a new framework for client-side development - Blazor. It is not quite clear yet whether Blazor can be faster than modern JS frameworks like React, Angular, Vue due to WebAssembly. But it definitely has a big advantage - development in C # as well as the whole .NET Core world can be used inside the application.
 
+
+<!-- more -->
+
 # Compiling and running C# in a browser
 The process of compiling and executing such a complex language as C # is a complex and time-consuming task. `Is it possible to compile and execute C # inside the browser?` However, Microsoft, as it turned out, had already prepared everything for us.
 
