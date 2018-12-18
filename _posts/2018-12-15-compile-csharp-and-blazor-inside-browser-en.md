@@ -69,11 +69,11 @@ Let's prepare the start page.
 ```
 
 First you need to parse the string into an abstract syntax tree. Since in the next step we will be compiling the Blazor components, we need the latest (`LanguageVersion.Latest`) version of the language. For this, Roslyn for C # has a method:
-```
+```c#
 SyntaxTree syntaxTree = CSharpSyntaxTree.ParseText(code, new CSharpParseOptions(LanguageVersion.Latest));
 ```
 Already at this stage, you can detect compilation errors by reading the parser diagnostics.
-```
+```c#
             foreach (var diagnostic in syntaxTree.GetDiagnostics())
             {
                 CompileLog.Add(diagnostic.ToString());
@@ -81,7 +81,7 @@ Already at this stage, you can detect compilation errors by reading the parser d
 ```
 
 Next, compile `Assembly` into a memory stream.
-```
+```c#
             CSharpCompilation compilation = CSharpCompilation.Create("CompileBlazorInBlazor.Demo", new[] {syntaxTree},
                 references, new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary));
 
@@ -94,7 +94,7 @@ Next, compile `Assembly` into a memory stream.
 
 Note that you need to get the `references` - list of the metadata of the connected Assemblies. But reading these files along the path `Assembly.Location` did not work, because there is no file system in the browser. Perhaps there is a more effective way to solve this problem, but the goal of this article is a conceptual possibility, so we download these libraries again via Http and do it only when we first start compiling.
 
-```
+```c#
                 foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
                 {
                     references.Add(
@@ -106,7 +106,7 @@ Note that you need to get the `references` - list of the metadata of the connect
 
 From `EmitResult` you can find out if the compilation was successful, as well as get diagnostic errors.
 Now we need to load `Assembly` into the current` AppDomain` and execute the compiled code. Unfortunately, there is no possibility to create several `AppDomain` inside the browser, so it is safe to load and unload` Assembly`.
-```
+```c#
                 Assembly assemby = AppDomain.CurrentDomain.Load(stream.ToArray());
                 var type = assemby.GetExportedTypes().FirstOrDefault();
                 var methodInfo = type.GetMethod("Run");
@@ -129,7 +129,7 @@ microsoft.aspnetcore.blazor.build\0.7.0\tools\Microsoft.AspNetCore.Razor.Languag
 microsoft.aspnetcore.blazor.build\0.7.0\tools\Microsoft.CodeAnalysis.Razor.dll
 ```
 Create engine to compile `Razor` and modify it for Blazor, since by default the engine will generate Razor code for the pages.
-```
+```c#
             var engine = RazorProjectEngine.Create(BlazorExtensionInitializer.DefaultConfiguration, fileSystem, b =>
                 {
                     BlazorExtensionInitializer.Register(b);
@@ -137,7 +137,7 @@ Create engine to compile `Razor` and modify it for Blazor, since by default the 
 ```
 Only the `fileSystem` is missing for execution - it is an abstraction over the file system. We have implemented an empty file system, however, if you want to compile complex projects with support for `_ViewImports.cshtml`, then you need to implement a more complex structure in memory.
 Now we will generate the code from the Blazor component, the C # code.
-```
+```c#
             var file = new MemoryRazorProjectItem(code);
             var doc = engine.Process(file).GetCSharpDocument();
             var csCode = doc.GeneratedCode;
@@ -146,7 +146,7 @@ From `doc` you can also get diagnostic messages about the results of generating 
 Now we got the code for the C# component. You need to parse `SyntaxTree`, then compile Assembly, load it into the current `AppDomain` and find the `Type` of the component. Same as in the previous example.
 
 It remains to load this component into the current application. There are several ways to do this, for example, by creating your `RenderFragment`.
-```
+```html
 @inject CompileService service
 
     <div class="card">
