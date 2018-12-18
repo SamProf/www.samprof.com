@@ -1,51 +1,29 @@
-<!DOCTYPE html>
-<!--[if IE 8]>
-<html lang="en" class="ie8"> <![endif]-->
-<!--[if IE 9]>
-<html lang="en" class="ie9"> <![endif]-->
-<!--[if !IE]><!-->
-<html lang="en"> <!--<![endif]-->
+<!doctype html>
+<html lang="en">
 <head>
-    <title>{% if page.title %}{{ page.title }} {% if page.tags %}{% for tag in page.tags %}#{{ tag }} {% endfor %} {% endif %}– {% endif %}{{ site.name }} – {{ site.description }}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link rel="icon" href="/favicon-32x32.png">
+
+    <title>{% if page.title %}{{ page.title }} {% if page.tags %}{% for tag in page.tags %}#{{ tag }} {% endfor %} {%
+        endif %}– {% endif %}{{ site.name }} – {{ site.description }}</title>
 
 
-    {% include meta.html %}
+    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/style.css">
 
-    <!-- Meta -->
-    <!--<meta charset="utf-8">-->
-    <!--<meta http-equiv="X-UA-Compatible" content="IE=edge">-->
-    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
-    <!--<meta name="description" content="Responsive HTML5 Website landing Page for Developers">-->
-    <!--<meta name="author" content="3rd Wave Media">-->
-    <link rel="shortcut icon" href="/favicon.ico">
-    <!--<link href='https://fonts.googleapis.com/css?family=Lato:300,400,300italic,400italic' rel='stylesheet' type='text/css'>-->
-    <!--<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>-->
-    <!-- Global CSS -->
-    <link rel="stylesheet" href="/assets/plugins/bootstrap/css/bootstrap.min.css">
-    <!-- Plugins CSS -->
-    <link rel="stylesheet" href="/assets/plugins/font-awesome/css/font-awesome.min.css">
-    <!-- github acitivity css -->
-    <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/octicons/2.0.2/octicons.min.css">-->
-    <!--<link rel="stylesheet" href="https://caseyscarborough.github.io/github-activity/github-activity-0.1.0.min.css">-->
-
-    <!-- Theme CSS -->
-    <link id="theme-style" rel="stylesheet" href="/style.css">
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-    
     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <script>
-  (adsbygoogle = window.adsbygoogle || []).push({
-    google_ad_client: "ca-pub-3904134905954949",
-    enable_page_level_ads: true
-  });
-</script>
-
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-3904134905954949",
+            enable_page_level_ads: true
+        });
+    </script>
 </head>
-
 <body>
 
 <!-- Fixed navbar -->
@@ -110,17 +88,11 @@
     </div><!--//container-->
 </footer><!--//footer-->
 
-<!-- Javascript -->
-<script type="text/javascript" src="/assets/plugins/jquery-1.11.1.min.js"></script>
-<script type="text/javascript" src="/assets/plugins/jquery-migrate-1.2.1.min.js"></script>
-<script type="text/javascript" src="/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
-<!--<script type="text/javascript" src="assets/plugins/jquery-rss/dist/jquery.rss.min.js"></script>-->
-<!-- github activity plugin -->
-<!--<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/mustache.js/0.7.2/mustache.min.js"></script>-->
-<!--<script type="text/javascript" src="http://caseyscarborough.github.io/github-activity/github-activity-0.1.0.min.js"></script>-->
-<!-- custom js -->
-<script type="text/javascript" src="/assets/js/main.js"></script>
-{% include analytics.html %}
+<!-- Bootstrap core JavaScript
+    ================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/popper.js/dist/umd/popper.min.js"></script>
+<script src="/assets/bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>
-
