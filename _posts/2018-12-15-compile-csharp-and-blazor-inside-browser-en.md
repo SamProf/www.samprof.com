@@ -29,7 +29,7 @@ Install-Package Microsoft.CodeAnalysis.CSharp
 ```
 
 Let's prepare the start page.
-```
+```html
 @page "/"
 @inject CompileService service
 
@@ -132,7 +132,7 @@ Create engine to compile `Razor` and modify it for Blazor, since by default the 
 ```
             var engine = RazorProjectEngine.Create(BlazorExtensionInitializer.DefaultConfiguration, fileSystem, b =>
                 {
-                    BlazorExtensionInitializer.Register(b);                    
+                    BlazorExtensionInitializer.Register(b);
                 });
 ```
 Only the `fileSystem` is missing for execution - it is an abstraction over the file system. We have implemented an empty file system, however, if you want to compile complex projects with support for `_ViewImports.cshtml`, then you need to implement a more complex structure in memory.
@@ -158,13 +158,13 @@ It remains to load this component into the current application. There are severa
 @functions
 {
     RenderFragment Result = null;
-    string Code { get; set; }    
+    string Code { get; set; }
 
     public async Task Run()
     {
             var type = await service.CompileBlazor(Code);
             if (type != null)
-            {         
+            {
                 Result = builder =>
                 {
                     builder.OpenComponent(0, type);
@@ -172,7 +172,7 @@ It remains to load this component into the current application. There are severa
                 };
             }
             else
-            {             
+            {
                 Result = null;
             }
     }
