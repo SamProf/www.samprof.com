@@ -13,7 +13,7 @@ layout: post
 
 ![](/images/compile-blazor-in-browser.png)
 
-If you are a web developer and are developing for a browser, then you are shure know JS, which can be executed inside a browser. There is an opinion that JS is not very suitable for complex calculations and algorithms. And although in recent years JS has made a big breakthrough in performance and wide of use, many developers continue to dream of launching a system language inside the browser. In the near future, the game may change thanks to WebAssembly.
+If you are a web developer and are developing for a browser, then you are sure know JS, which can be executed inside a browser. There is an opinion that JS is not very suitable for complex calculations and algorithms. And although in recent years JS has made a big breakthrough in performance and wide of use, many developers continue to dream of launching a system language inside the browser. In the near future, the game may change thanks to WebAssembly.
 
 Microsoft is not standing on place and actively trying to port .NET to WebAssembly. As one of the results, we received a new framework for client-side development - Blazor. It is not quite clear yet whether Blazor can be faster than modern JS frameworks like React, Angular, Vue due to WebAssembly. But it definitely has a big advantage - development in C # as well as the whole .NET Core world can be used inside the application.
 
