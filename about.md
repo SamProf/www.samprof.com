@@ -3,7 +3,7 @@ title: About
 layout: page
 ---
 
-### About me:
+### Information:
 * Date of birth:  March 12, 1986
 * Marital status: married, 2 child
 * Saarbrücken, 66113 Germany
