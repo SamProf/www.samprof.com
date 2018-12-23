@@ -3,37 +3,46 @@ layout: default
 ---
 
 <section class="section">
-  <div class="section-inner">
-    <h1>
-      <a href="{{ site.baseurl }}{{ post.url }}">
-        {{ post.title }}
-      </a>
-    </h1>
+    <div class="section-inner">
+        <h1>
+            <a href="{{ site.baseurl }}{{ page.url }}">
+                {{ page.title }}
+            </a>
+        </h1>
 
-    <div class="content">
-      {{ content }}
+        <div class="content">
+            {{ content }}
 
-      <div>
-        {% if page.tags %}<div>Tags:    {% for tag in page.tags %}#{{ tag }}&nbsp;{% endfor %} </div>{% endif %}
-      </div>
+            <div>
+                {% if page.tags %}
+                <div>Tags: {% for tag in page.tags %}#{{ tag }}&nbsp;{% endfor %}</div>
+                {% endif %}
+            </div>
+
+            <div class="PageNavigation">
+                {% if page.previous.url %}
+                <a class="prev" href="{{page.previous.url}}">&laquo; {{page.previous.title}}</a>
+                {% endif %}
+                {% if page.next.url %}
+                <a class="next" href="{{page.next.url}}">{{page.next.title}} &raquo;</a>
+                {% endif %}
+            </div>
 
 
+            <!-- AddToAny BEGIN -->
+            <div class="a2a_kit a2a_kit_size_32 a2a_default_style">
+                <a class="a2a_dd" href="https://www.addtoany.com/share"></a>
+                <a class="a2a_button_facebook"></a>
+                <a class="a2a_button_twitter"></a>
+                <a class="a2a_button_linkedin"></a>
+                <a class="a2a_button_email"></a>
+                <a class="a2a_button_reddit"></a>
+                <a class="a2a_button_tumblr"></a>
+            </div>
+            <script async src="https://static.addtoany.com/menu/page.js"></script>
+            <!-- AddToAny END -->
 
-
-      <!-- AddToAny BEGIN -->
-      <div class="a2a_kit a2a_kit_size_32 a2a_default_style">
-        <a class="a2a_dd" href="https://www.addtoany.com/share"></a>
-        <a class="a2a_button_facebook"></a>
-        <a class="a2a_button_twitter"></a>
-        <a class="a2a_button_linkedin"></a>
-        <a class="a2a_button_email"></a>
-        <a class="a2a_button_reddit"></a>
-        <a class="a2a_button_tumblr"></a>
-      </div>
-      <script async src="https://static.addtoany.com/menu/page.js"></script>
-      <!-- AddToAny END -->
-
-      {% include disqus.html %}
-    </div><!--//content-->
-  </div><!--//section-inner-->
+            {% include disqus.html %}
+        </div><!--//content-->
+    </div><!--//section-inner-->
 </section><!--//section-->
