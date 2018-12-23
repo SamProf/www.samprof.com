@@ -4,13 +4,22 @@ layout: default
 
 <section class="section">
   <div class="section-inner">
-    <h2 class="heading">{{ page.title }}</h2>
+    <h1>
+      <a href="{{ site.baseurl }}{{ post.url }}">
+        {{ post.title }}
+      </a>
+    </h1>
+
     <div class="content">
       {{ content }}
 
-       {% if page.tags %}<div>Tags:    {% for tag in page.tags %}{{ tag }}{% endfor %} </div>{% endif %}
-      
-      
+      <div>
+        {% if page.tags %}<div>Tags:    {% for tag in page.tags %}#{{ tag }}&nbsp;{% endfor %} </div>{% endif %}
+      </div>
+
+
+
+
       <!-- AddToAny BEGIN -->
       <div class="a2a_kit a2a_kit_size_32 a2a_default_style">
         <a class="a2a_dd" href="https://www.addtoany.com/share"></a>
