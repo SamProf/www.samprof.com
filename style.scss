@@ -13,6 +13,8 @@ iframe {
 
 body {
   padding-top: 5rem;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
 }
 
 .main-template {
@@ -23,9 +25,5 @@ body {
   margin-bottom: 40px;
 }
 
-body {
-  overflow-wrap: break-word;
-  word-wrap: break-word;
-}
 
 @import "highlights";
