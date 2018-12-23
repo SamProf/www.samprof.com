@@ -65,39 +65,3 @@ layout: default
         {% endif %}
     </ul>
 </nav>
-
-
-<!-- Pagination links -->
-<div class="pagination">
-    {% if paginator.previous_page %}
-    <a href="{{ paginator.previous_page_path }}" class="previous">
-        Previous
-    </a>
-    {% else %}
-    <span class="previous">Previous</span>
-    {% endif %}
-    <span class="page_number ">
-    Page: {{ paginator.page }} of {{ paginator.total_pages }}
-  </span>
-    {% if paginator.next_page %}
-    <a href="{{ paginator.next_page_path }}" class="next">Next</a>
-    {% else %}
-    <span class="next ">Next</span>
-    {% endif %}
-</div>
-
-
-<!--{% for post in site.posts %}-->
-<!--<section class="section">-->
-<!--<div class="section-inner">-->
-<!--<a href="{{ site.baseurl }}{{ post.url }}"><h2>{{ post.title }}</h2></a>-->
-<!--<div class="content">-->
-<!--{{ post.excerpt }}-->
-
-<!--<a href="{{ site.baseurl }}{{ post.url }}" class="btn btn-info">Read More</a>-->
-<!--</div>&lt;!&ndash;//content&ndash;&gt;-->
-<!--</div>&lt;!&ndash;//section-inner&ndash;&gt;-->
-<!--</section>&lt;!&ndash;//section&ndash;&gt;-->
-<!--{% endfor %}-->
-
-
