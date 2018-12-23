@@ -1,6 +1,5 @@
 ---
 ---
-
 img {
   max-width: 100%;
 }
@@ -14,17 +13,18 @@ iframe {
 body {
   padding-top: 5rem;
 }
+
 .main-template {
   //padding: 3rem 1.5rem;
 }
 
-.post-item
-{
+.post-item {
   margin-bottom: 40px;
 }
 
-
-
-
+.body {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
 
 @import "highlights";
