@@ -15,9 +15,9 @@ layout: default
         {{ post.excerpt }}
     </div>
 
-    <div style="display: flex;">
+    <div style="display: flex;" class="alert alert-secondary">
         <div style="flex: 1;">
-            SamProf at {{ post.date | date_to_long_string }}
+            {{ post.date | date_to_long_string }}
         </div>
         <a href="{{ site.baseurl }}{{ post.url }}" class="btn btn-primary">Read More</a>
     </div>
