@@ -6,6 +6,6 @@ layout: post
 
 ![](/images/An-Introduction-to-Googles-Material-Design-1.jpg)
 
-[MatBlazor - Github repository](https://github.com/BlazorComponents/MatBlazor)
+[MatBlazor - Github repository](https://github.com/SamProf/MatBlazor)
 
-[MatBlazor  - Demo and Documentation](https://blazorcomponents.github.io/MatBlazor/)
+[MatBlazor  - Demo and Documentation](https://www.matblazor.com)
