@@ -14,6 +14,7 @@ From Blazor documentation we know that you can capture references to HTML elemen
 - Add a `ref` attribute to the HTML element.
 - Define a field of type `ElementRef` whose name matches the value of the `ref` attribute.
 The following example shows capturing a reference to the `username` `<input>` element: 
+
 ```html
 <input ref="username" ... />
 
@@ -29,6 +30,7 @@ The following example shows capturing a reference to the `username` `<input>` el
 If you try to pass the `ElementRef` to another component (children or neighbor), it will not work. 
 Because `ref` returns the value at the Render moment after the parameters have been applied.
 The value can be applied after the following `StateHasChanged()`.
+
 ```html
 <MyTooltipComponent targetRef="@username"></MyTooltipComponent>
 
