@@ -174,4 +174,5 @@ To obtain a `ElementRef` to the Custom Blazor Component your component should ge
 
 ### Summary
 In my opinion, this is one of the best `ElementRef` transfer techniques among the components.
+Of course, in the class, you can add events with subscription and unsubscribe, and much more, for example Observable.
 That I used in the development of the [MatBlazor](https://www.matblazor.com) components for [Tooltip](https://www.matblazor.com/Tooltip) and [Menu](https://www.matblazor.com/Menu).
