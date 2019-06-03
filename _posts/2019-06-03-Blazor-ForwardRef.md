@@ -53,7 +53,6 @@ The same problem is reproduced when you need to get the ElementRef from the Chil
 </MyTooltipComponent>
 ```
 
-
 ## Solution `ForwardRef`
 The solution is to create a store for the ElementRef and pass this as parameter to all components.
 ```
@@ -173,4 +172,4 @@ To obtain a `ElementRef` to the Custom Blazor Component your component should ge
 
 ### Summary
 In my opinion, this is one of the best `ElementRef` transfer techniques among the components.
-That I used in the development of the [MatBlazor][https://www.matblazor.com] components for [Tooltip](https://www.matblazor.com/Tooltip) and [Menu](https://www.matblazor.com/Menu).
+That I used in the development of the [MatBlazor](https://www.matblazor.com) components for [Tooltip](https://www.matblazor.com/Tooltip) and [Menu](https://www.matblazor.com/Menu).
