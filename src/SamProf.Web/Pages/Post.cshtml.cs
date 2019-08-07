@@ -32,7 +32,10 @@ namespace SamProf.Web.Pages
         {
             var filePath = Path.Combine(StaticSiteGenerator.Instance.BasePath, "_posts", $"{Year}-{Month}-{Day}-{Name}.md");
             var fileContent = System.IO.File.ReadAllText(filePath);
-            PostText = Markdown.ToHtml(fileContent);
+            var pipeline = new MarkdownPipelineBuilder()
+                .UseAdvancedExtensions()
+                .Build();
+            PostText = Markdown.ToHtml(fileContent, pipeline);
 
         }
     }

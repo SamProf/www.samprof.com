@@ -100,11 +100,12 @@ namespace SamProf.Web.Core
                 var html = await httpClient.GetStringAsync(uri);
                 var name = url.Replace("/", "\\");
                 var filePath = docsFolder + name;
-                if (filePath.EndsWith("\\"))
+                if (!filePath.EndsWith("\\"))
                 {
-                    filePath += "Index";
+                    filePath += "\\";
                 }
 
+                filePath += "Index";
                 filePath += ".html";
                 Directory.CreateDirectory(Path.GetDirectoryName(filePath));
                 File.WriteAllText(filePath, html);

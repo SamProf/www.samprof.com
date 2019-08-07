@@ -47,12 +47,12 @@ tags:</p>
 layout: post</li>
 </ul>
 <hr />
-<h1>Introduction</h1>
+<h1 id="introduction">Introduction</h1>
 <p><img src="/images/compile-blazor-in-browser.png" alt="" /></p>
 <p>If you are a web developer and are developing for a browser, then you are sure know JS, which can be executed inside a browser. There is an opinion that JS is not very suitable for complex calculations and algorithms. And although in recent years JS has made a big breakthrough in performance and wide of use, many developers continue to dream of launching a system language inside the browser. In the near future, the game may change thanks to WebAssembly.</p>
 <p>Microsoft is not standing on place and actively trying to port .NET to WebAssembly. As one of the results, we received a new framework for client-side development - Blazor. It is not quite clear yet whether Blazor can be faster than modern JS frameworks like React, Angular, Vue due to WebAssembly. But it definitely has a big advantage - development in C # as well as the whole .NET Core world can be used inside the application.</p>
 <!--more-->
-<h1>Compiling and running C# in a browser</h1>
+<h1 id="compiling-and-running-c-in-a-browser">Compiling and running C# in a browser</h1>
 <p>The process of compiling and executing such a complex language as C # is a complex and time-consuming task. <code>Is it possible to compile and execute C # inside the browser?</code> However, Microsoft, as it turned out, had already prepared everything for us.</p>
 <p>First, let's create a Blazor app.
 <img src="/images/2018-12-14.png" alt="Create Blazor Application" /></p>
@@ -136,7 +136,7 @@ Now we need to load <code>Assembly</code> into the current<code> AppDomain</code
 <p><img src="/images/2018-12-15.png" alt="" />
 At this stage, we compiled and executed C # code directly in the browser. A program can consist of several files and use other .NET libraries. Is not that great? Now we need to fo deeper.</p>
 <p><img src="/images/We_need_to_go_deeper.jpg" alt="" /></p>
-<h1>Compiling and running Blazor Components in a browser</h1>
+<h1 id="compiling-and-running-blazor-components-in-a-browser">Compiling and running Blazor Components in a browser</h1>
 <p>Blazor components are modified <code>Razor</code> templates. To compile the Blazor component, you need to create a whole environment for compiling Razor templates and set up extensions for Blazor. You need to install the <code>Microsoft.AspNetCore.Blazor.Build</code> package from nuget. However, adding it to our Blazor project will not work, because then the linker will not can to compile the project. Therefore, you need to download it, and then manually add 3 libraries.</p>
 <pre><code>microsoft.aspnetcore.blazor.build\0.7.0\tools\Microsoft.AspNetCore.Blazor.Razor.Extensions.dll
 microsoft.aspnetcore.blazor.build\0.7.0\tools\Microsoft.AspNetCore.Razor.Language.dll
@@ -190,7 +190,7 @@ Now we got the code for the C# component. You need to parse <code>SyntaxTree</co
 
 </code></pre>
 <p><img src="/images/2018-12-15-2.png" alt="" /></p>
-<h1>Conclusion</h1>
+<h1 id="conclusion">Conclusion</h1>
 <p>We compiled and launched the Blazor component in the browser. Obviously, a full compilation of dynamic C# code right inside the browser can impress any developer.
 But here it is necessary to take into account such &quot;pitfalls&quot;:</p>
 <ul>

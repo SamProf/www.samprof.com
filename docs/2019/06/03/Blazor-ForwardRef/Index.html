@@ -36,12 +36,12 @@
 
 
 <hr />
-<h2>title: Forwarding Refs in Blazor
+<h2 id="title-forwarding-refs-in-blazor-date-2019-06-03-000000-z-layout-post">title: Forwarding Refs in Blazor
 date: 2019-06-03 00:00:00 Z
 layout: post</h2>
 <p>ForwardRef is a technique for automatically passing a ElementRef through a component to one of its children or back from children to parent or among independent components.
 This is typically not necessary for most components in the application. However, it can be useful for some kinds of components, especially in reusable component libraries. The most common scenarios are described below.</p>
-<h4>Capture references to elements</h4>
+<h4 id="capture-references-to-elements">Capture references to elements</h4>
 <p>From Blazor documentation we know that you can capture references to HTML elements in a component using the following approach:</p>
 <ul>
 <li>Add a <code>ref</code> attribute to the HTML element.</li>
@@ -54,8 +54,8 @@ The following example shows capturing a reference to the <code>username</code> <
     ElementRef username;
 }
 </code></pre>
-<h3>Problematics</h3>
-<h3>Problem in passing a ElementRef to its children or another component</h3>
+<h3 id="problematics">Problematics</h3>
+<h3 id="problem-in-passing-a-elementref-to-its-children-or-another-component">Problem in passing a ElementRef to its children or another component</h3>
 <p>If you try to pass the <code>ElementRef</code> to another component (children or neighbor), it will not work.
 Because <code>ref</code> returns the value at the Render moment after the parameters have been applied.
 The value can be applied after the following <code>StateHasChanged()</code>.</p>
@@ -67,7 +67,7 @@ The value can be applied after the following <code>StateHasChanged()</code>.</p>
     ElementRef username;
 }
 </code></pre>
-<h3>Problem in passing a child ElementRef to its parent in Blazor</h3>
+<h3 id="problem-in-passing-a-child-elementref-to-its-parent-in-blazor">Problem in passing a child ElementRef to its parent in Blazor</h3>
 <p>The same problem is reproduced when you need to get the ElementRef from the ChildContent, especially when ChildContent is not an HTML Element, but Blazor Component.</p>
 <pre><code class="language-html">&lt;MyTooltipComponent Tooltip=&quot;My tooltip for h1 element&quot;&gt;
     &lt;h1&gt;&lt;/h1&gt;
@@ -77,7 +77,7 @@ The value can be applied after the following <code>StateHasChanged()</code>.</p>
     &lt;MatButton&gt;Click me&lt;/MatButton&gt;
 &lt;/MyTooltipComponent&gt;
 </code></pre>
-<h2>Solution <code>ForwardRef</code></h2>
+<h2 id="solution-forwardref">Solution <code>ForwardRef</code></h2>
 <p>The solution is to create a store for the ElementRef and pass this as parameter to all components.</p>
 <pre><code>public class ForwardRef
 {
@@ -94,9 +94,9 @@ The value can be applied after the following <code>StateHasChanged()</code>.</p>
     }
 }
 </code></pre>
-<h3>Solution for passing a ElementRef to its children or another component</h3>
+<h3 id="solution-for-passing-a-elementref-to-its-children-or-another-component">Solution for passing a ElementRef to its children or another component</h3>
 <p>When the current component wants to pass its <code>ElementRef</code> and pass it on to others, you should create ForwardRef instance and pass it to others components in parameters.</p>
-<h4>Index.razor</h4>
+<h4 id="index.razor">Index.razor</h4>
 <pre><code class="language-html">&lt;MyTooltipComponent targetForwardRef=&quot;@usernameForwardRef&quot; Tooltip=&quot;My tooltip&quot;&gt;&lt;/MyTooltipComponent&gt;
 
 &lt;input ref=&quot;usernameForwardRef.Current&quot; ... /&gt;
@@ -105,7 +105,7 @@ The value can be applied after the following <code>StateHasChanged()</code>.</p>
     ForwardRef usernameForwardRef = new ForwardRef();
 }
 </code></pre>
-<h4>MyTooltipComponent.razor</h4>
+<h4 id="mytooltipcomponent.razor">MyTooltipComponent.razor</h4>
 <pre><code class="language-html">&lt;div class=&quot;my-tooltip&quot;&gt;@Tooltip&lt;/div&gt;
 
 @functions {
@@ -122,9 +122,9 @@ The value can be applied after the following <code>StateHasChanged()</code>.</p>
     }
 }
 </code></pre>
-<h3>Solution in passing a child ElementRef to its parent in Blazor</h3>
+<h3 id="solution-in-passing-a-child-elementref-to-its-parent-in-blazor">Solution in passing a child ElementRef to its parent in Blazor</h3>
 <p>If you want to get a reference to a <code>ElementRef</code> of child, you should pass the <code>ForwardRef</code> to the child in which the child returns <code>ElementRef</code> to itself.</p>
-<h4>MyTooltipComponent.razor</h4>
+<h4 id="mytooltipcomponent.razor-1">MyTooltipComponent.razor</h4>
 <pre><code class="language-html">@ChildContent(TargetForwardRef)
 
 &lt;div class=&quot;my-tooltip&quot;&gt;@Tooltip&lt;/div&gt;
@@ -147,13 +147,13 @@ The value can be applied after the following <code>StateHasChanged()</code>.</p>
 }
 </code></pre>
 <p>To obtain a <code>ElementRef</code> to the Html Element.</p>
-<h4>Index.razor</h4>
+<h4 id="index.razor-1">Index.razor</h4>
 <pre><code class="language-html">&lt;MyTooltipComponent Tooltip=&quot;My tooltip&quot;&gt;
     &lt;input ref=&quot;@context.Current&quot; ... /&gt;
 &lt;/MyTooltipComponent&gt;
 </code></pre>
 <p>To obtain a <code>ElementRef</code> to the Custom Blazor Component your component should get <code>ForwardRef</code> as a parameter.</p>
-<h4>MyCustomComponent.razor</h4>
+<h4 id="mycustomcomponent.razor">MyCustomComponent.razor</h4>
 <pre><code class="language-html">&lt;MyCustomComponent&gt;
     &lt;input ref=&quot;ForwardRef.Current&quot; ... /&gt;
 &lt;/MyTooltipComponent&gt;
@@ -171,12 +171,12 @@ The value can be applied after the following <code>StateHasChanged()</code>.</p>
     }
 }
 </code></pre>
-<h4>Index.razor</h4>
+<h4 id="index.razor-2">Index.razor</h4>
 <pre><code class="language-html">&lt;MyTooltipComponent Tooltip=&quot;My tooltip&quot;&gt;
     &lt;MyCustomComponent RefBack=&quot;@context&quot; /&gt;
 &lt;/MyTooltipComponent&gt;
 </code></pre>
-<h3>Summary</h3>
+<h3 id="summary">Summary</h3>
 <p>In my opinion, this is one of the best <code>ElementRef</code> transfer techniques among the components.
 Of course, in the class, you can add events with subscription and unsubscribe, and much more, for example Observable.
 That I used in the development of the <a href="https://www.matblazor.com">MatBlazor</a> components for <a href="https://www.matblazor.com/Tooltip">Tooltip</a> and <a href="https://www.matblazor.com/Menu">Menu</a>.</p>

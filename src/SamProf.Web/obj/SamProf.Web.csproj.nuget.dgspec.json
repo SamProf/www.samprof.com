@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "d:\\SamProf\\Projects\\www.samprof.com\\src\\SamProf.Web\\SamProf.Web.csproj": {}
+    "D:\\SamProf\\Projects\\www.samprof.com\\src\\SamProf.Web\\SamProf.Web.csproj": {}
   },
   "projects": {
-    "d:\\SamProf\\Projects\\www.samprof.com\\src\\SamProf.Web\\SamProf.Web.csproj": {
+    "D:\\SamProf\\Projects\\www.samprof.com\\src\\SamProf.Web\\SamProf.Web.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "d:\\SamProf\\Projects\\www.samprof.com\\src\\SamProf.Web\\SamProf.Web.csproj",
+        "projectUniqueName": "D:\\SamProf\\Projects\\www.samprof.com\\src\\SamProf.Web\\SamProf.Web.csproj",
         "projectName": "SamProf.Web",
-        "projectPath": "d:\\SamProf\\Projects\\www.samprof.com\\src\\SamProf.Web\\SamProf.Web.csproj",
+        "projectPath": "D:\\SamProf\\Projects\\www.samprof.com\\src\\SamProf.Web\\SamProf.Web.csproj",
         "packagesPath": "C:\\Users\\wsamp\\.nuget\\packages\\",
-        "outputPath": "d:\\SamProf\\Projects\\www.samprof.com\\src\\SamProf.Web\\obj\\",
+        "outputPath": "D:\\SamProf\\Projects\\www.samprof.com\\src\\SamProf.Web\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\",

@@ -47,12 +47,12 @@ tags:</p>
 layout: post</li>
 </ul>
 <hr />
-<h1>Введение</h1>
+<h1 id="section">Введение</h1>
 <p><img src="/images/We_need_to_go_deeper.jpg" alt="" /></p>
 <p>Если вы Web-разработчик и ведете разработку для браузера, то вы точно знакомы с JS, который может исполняться внутри браузера. Существует мнение, что JS не сильно подходит для сложных вычислений и алгоритмов. И хотя в последние годы JS cделал большой рывок в производительности и широте использования, многие программисты продолжают мечтать запустить системный язык внутри браузера. В ближайшее время игра может поменяться благодаря WebAssembly.</p>
 <p>Microsoft не стоит на месте и активно пытается портировать .NET в WebAssembly. Как один из результатов мы получили новый фреймворк для клиенской разработки - Blazor. Пока не совсем очевидно, сможет ли Blazor за счет WebAssembly быть быстрее современных JS - фреймворков типа React, Angular, Vue. Но он точно имеет большое преимущество - разработка на C#, а так же весь мир .NET Core может быть использован внутри приложения.</p>
 <!--more-->
-<h1>Компиляция и выполение C#</h1>
+<h1 id="c">Компиляция и выполение C#</h1>
 <p>Процесс компиляции и выполнения такого сложного языка как C# - это сложная и трудоемкая задача. <code>А можно ли внутри браузера скомпилировать и выполнить С#?</code>-  Это зависит от возможностей технологии (а точнее, ядра). Однако в Microsoft, как оказалось, уже все подготовили для нас.</p>
 <p>Для начала создадим Blazor приложение.
 <img src="/images/2018-12-14.png" alt="Create Blazor Application" /></p>
@@ -135,7 +135,7 @@ layout: post</li>
 </code></pre>
 <p><img src="/images/2018-12-15.png" alt="" />
 На данном этапе мы скомпилировали и выполнили C# код прямо в браузере. Программа может состоять из нескольких файлов и использовать другие .NET библиотеки. Разве это не здорово? Теперь идем дальше.</p>
-<h1>Компиляция и запуск Blazor компонента в браузере.</h1>
+<h1 id="blazor">Компиляция и запуск Blazor компонента в браузере.</h1>
 <p>Компоненты Blazor - это модифицированные <code>Razor</code> шаблоны. Поэтому чтобы скомпилировать Blazor комопнент, нужно развернуть целую среду для компиляции Razor шаблонов и настроить расширения для Blazor. Нужно установить пакет <code>Microsoft.AspNetCore.Blazor.Build</code> из nuget. Однако, добавить его в наш проект Blazor не получится, так как потом линкер не сможет скомпилировать проект. Поэтому нужно его скачать, а потом вручную добавить 3 библиотеки.</p>
 <pre><code>microsoft.aspnetcore.blazor.build\0.7.0\tools\Microsoft.AspNetCore.Blazor.Razor.Extensions.dll
 microsoft.aspnetcore.blazor.build\0.7.0\tools\Microsoft.AspNetCore.Razor.Language.dll
@@ -189,7 +189,7 @@ microsoft.aspnetcore.blazor.build\0.7.0\tools\Microsoft.CodeAnalysis.Razor.dll
 
 </code></pre>
 <p><img src="/images/2018-12-15-2.png" alt="" /></p>
-<h1>Заключение</h1>
+<h1 id="section-1">Заключение</h1>
 <p>Мы скомпилировали и запустили в браузере Blazor компонент. Очевидно, что полноценная компиляция динамического кода C# прямо внутри браузера может впечатлить любого программиста.
 Но тут следует учитывать такие &quot;подводные камни&quot;:</p>
 <ul>
@@ -198,8 +198,8 @@ microsoft.aspnetcore.blazor.build\0.7.0\tools\Microsoft.CodeAnalysis.Razor.dll
 <li>Для компиляции связанных Blazor компонентов потребуется двухэтапная компиляция.
 Все эти проблемы уже решены и это тема для отдельной статьи.</li>
 </ul>
-<p>GIT: https://github.com/BlazorComponents/CompileBlazorInBlazor</p>
-<p>Demo: https://blazorcomponents.github.io/CompileBlazorInBlazor/</p>
+<p>GIT: <a href="https://github.com/BlazorComponents/CompileBlazorInBlazor">https://github.com/BlazorComponents/CompileBlazorInBlazor</a></p>
+<p>Demo: <a href="https://blazorcomponents.github.io/CompileBlazorInBlazor/">https://blazorcomponents.github.io/CompileBlazorInBlazor/</a></p>
 
 
         </main>
