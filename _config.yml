@@ -8,28 +8,28 @@ collections:
   uploads:
     title: Uploads
     output: true
-name: SamProf
+name: SamProf Blog
 description: C# and JS Development
 avatar: "/images/logo.jpg"
 excerpt_separator: "<!--more-->"
 footer-links:
-  dribbble: 
-  email: 
-  facebook: 
-  flickr: 
+  dribbble:
+  email:
+  facebook:
+  flickr:
   github: samprof
-  instagram: 
-  linkedin: 
-  pinterest: 
-  rss: 
-  twitter: 
-  stackoverflow: 
-  youtube: 
-  googleplus: 
+  instagram:
+  linkedin:
+  pinterest:
+  rss:
+  twitter:
+  stackoverflow:
+  youtube:
+  googleplus:
 disqus: www-samprof-com
 google_analytics: UA-118748625-1
 url: https://www.samprof.com
-baseurl: 
+baseurl:
 permalink: "/:year/:month/:day/:slug"
 version: v1.2.0
 paginate: 5
