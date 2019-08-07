@@ -1,6 +1,5 @@
 ---
 ---
-
 img {
   max-width: 100%;
 }
@@ -41,6 +40,10 @@ body {
 
 .PageNavigation .next {
   text-align: right;
+}
+
+.fa-size24 .fa {
+  font-size: 24px;
 }
 
 @import "highlights";
