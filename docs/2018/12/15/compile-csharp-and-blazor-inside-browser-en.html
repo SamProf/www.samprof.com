@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Post - SamProf.Web</title>
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="/css/site.css" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" href="/">SamProf.Web</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" href="/">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" href="/Privacy">Privacy</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            
+<h1>Post</h1>
+
+
+<hr />
+<p>title: C# and Blazor Compilation inside Browser
+date: 2018-12-15 00:00:00 Z
+tags:</p>
+<ul>
+<li>blazor</li>
+<li>csharp</li>
+<li>en</li>
+<li>webassembly
+layout: post</li>
+</ul>
+<hr />
+<h1>Introduction</h1>
+<p><img src="/images/compile-blazor-in-browser.png" alt="" /></p>
+<p>If you are a web developer and are developing for a browser, then you are sure know JS, which can be executed inside a browser. There is an opinion that JS is not very suitable for complex calculations and algorithms. And although in recent years JS has made a big breakthrough in performance and wide of use, many developers continue to dream of launching a system language inside the browser. In the near future, the game may change thanks to WebAssembly.</p>
+<p>Microsoft is not standing on place and actively trying to port .NET to WebAssembly. As one of the results, we received a new framework for client-side development - Blazor. It is not quite clear yet whether Blazor can be faster than modern JS frameworks like React, Angular, Vue due to WebAssembly. But it definitely has a big advantage - development in C # as well as the whole .NET Core world can be used inside the application.</p>
+<!--more-->
+<h1>Compiling and running C# in a browser</h1>
+<p>The process of compiling and executing such a complex language as C # is a complex and time-consuming task. <code>Is it possible to compile and execute C # inside the browser?</code> However, Microsoft, as it turned out, had already prepared everything for us.</p>
+<p>First, let's create a Blazor app.
+<img src="/images/2018-12-14.png" alt="Create Blazor Application" /></p>
+<p>After that, you need to install Nuget package for analyzing and compiling C #.</p>
+<pre><code>Install-Package Microsoft.CodeAnalysis.CSharp
+</code></pre>
+<p>Let's prepare the start page.</p>
+<pre><code class="language-html">@page &quot;/&quot;
+@inject CompileService service
+
+&lt;h1&gt;Compile and Run C# in Browser&lt;/h1&gt;
+
+&lt;div&gt;
+    &lt;div class=&quot;form-group&quot;&gt;
+        &lt;label for=&quot;exampleFormControlTextarea1&quot;&gt;C# Code&lt;/label&gt;
+        &lt;textarea class=&quot;form-control&quot; id=&quot;exampleFormControlTextarea1&quot; rows=&quot;10&quot; bind=&quot;@CsCode&quot;&gt;&lt;/textarea&gt;
+    &lt;/div&gt;
+    &lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot; onclick=&quot;@Run&quot;&gt;Run&lt;/button&gt;
+    &lt;div class=&quot;card&quot;&gt;
+        &lt;div class=&quot;card-body&quot;&gt;
+            &lt;pre&gt;@ResultText&lt;/pre&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;card&quot;&gt;
+        &lt;div class=&quot;card-body&quot;&gt;
+            &lt;pre&gt;@CompileText&lt;/pre&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+@functions
+{
+    string CsCode { get; set; }
+    string ResultText { get; set; }
+    string CompileText { get; set; }
+
+    public async Task Run()
+    {
+        ResultText = await service.CompileAndRun(CsCode);
+        CompileText = string.Join(&quot;\r\n&quot;, service.CompileLog);
+        this.StateHasChanged();
+    }
+}
+</code></pre>
+<p>First you need to parse the string into an abstract syntax tree. Since in the next step we will be compiling the Blazor components, we need the latest (<code>LanguageVersion.Latest</code>) version of the language. For this, Roslyn for C # has a method:</p>
+<pre><code class="language-c#">SyntaxTree syntaxTree = CSharpSyntaxTree.ParseText(code, new CSharpParseOptions(LanguageVersion.Latest));
+</code></pre>
+<p>Already at this stage, you can detect compilation errors by reading the parser diagnostics.</p>
+<pre><code class="language-c#">            foreach (var diagnostic in syntaxTree.GetDiagnostics())
+            {
+                CompileLog.Add(diagnostic.ToString());
+            }
+</code></pre>
+<p>Next, compile <code>Assembly</code> into a memory stream.</p>
+<pre><code class="language-c#">            CSharpCompilation compilation = CSharpCompilation.Create(&quot;CompileBlazorInBlazor.Demo&quot;, new[] {syntaxTree},
+                references, new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary));
+
+            using (MemoryStream stream = new MemoryStream())
+            {
+                EmitResult result = compilation.Emit(stream);
+            }
+
+</code></pre>
+<p>Note that you need to get the <code>references</code> - list of the metadata of the connected Assemblies. But reading these files along the path <code>Assembly.Location</code> did not work, because there is no file system in the browser. Perhaps there is a more effective way to solve this problem, but the goal of this article is a conceptual possibility, so we download these libraries again via Http and do it only when we first start compiling.</p>
+<pre><code class="language-c#">                foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
+                {
+                    references.Add(
+                        MetadataReference.CreateFromStream(
+                            await this._http.GetStreamAsync(&quot;/_framework/_bin/&quot; + assembly.Location)));
+                }
+
+</code></pre>
+<p>From <code>EmitResult</code> you can find out if the compilation was successful, as well as get diagnostic errors.
+Now we need to load <code>Assembly</code> into the current<code> AppDomain</code> and execute the compiled code. Unfortunately, there is no possibility to create several <code>AppDomain</code> inside the browser, so it is safe to load and unload<code> Assembly</code>.</p>
+<pre><code class="language-c#">                Assembly assemby = AppDomain.CurrentDomain.Load(stream.ToArray());
+                var type = assemby.GetExportedTypes().FirstOrDefault();
+                var methodInfo = type.GetMethod(&quot;Run&quot;);
+                var instance = Activator.CreateInstance(type);
+                return (string) methodInfo.Invoke(instance, new object[] {&quot;my UserName&quot;, 12});
+</code></pre>
+<p><img src="/images/2018-12-15.png" alt="" />
+At this stage, we compiled and executed C # code directly in the browser. A program can consist of several files and use other .NET libraries. Is not that great? Now we need to fo deeper.</p>
+<p><img src="/images/We_need_to_go_deeper.jpg" alt="" /></p>
+<h1>Compiling and running Blazor Components in a browser</h1>
+<p>Blazor components are modified <code>Razor</code> templates. To compile the Blazor component, you need to create a whole environment for compiling Razor templates and set up extensions for Blazor. You need to install the <code>Microsoft.AspNetCore.Blazor.Build</code> package from nuget. However, adding it to our Blazor project will not work, because then the linker will not can to compile the project. Therefore, you need to download it, and then manually add 3 libraries.</p>
+<pre><code>microsoft.aspnetcore.blazor.build\0.7.0\tools\Microsoft.AspNetCore.Blazor.Razor.Extensions.dll
+microsoft.aspnetcore.blazor.build\0.7.0\tools\Microsoft.AspNetCore.Razor.Language.dll
+microsoft.aspnetcore.blazor.build\0.7.0\tools\Microsoft.CodeAnalysis.Razor.dll
+</code></pre>
+<p>Create engine to compile <code>Razor</code> and modify it for Blazor, since by default the engine will generate Razor code for the pages.</p>
+<pre><code class="language-c#">            var engine = RazorProjectEngine.Create(BlazorExtensionInitializer.DefaultConfiguration, fileSystem, b =&gt;
+                {
+                    BlazorExtensionInitializer.Register(b);
+                });
+</code></pre>
+<p>Only the <code>fileSystem</code> is missing for execution - it is an abstraction over the file system. We have implemented an empty file system, however, if you want to compile complex projects with support for <code>_ViewImports.cshtml</code>, then you need to implement a more complex structure in memory.
+Now we will generate the code from the Blazor component, the C # code.</p>
+<pre><code class="language-c#">            var file = new MemoryRazorProjectItem(code);
+            var doc = engine.Process(file).GetCSharpDocument();
+            var csCode = doc.GeneratedCode;
+</code></pre>
+<p>From <code>doc</code> you can also get diagnostic messages about the results of generating C# code from the Blazor component.
+Now we got the code for the C# component. You need to parse <code>SyntaxTree</code>, then compile Assembly, load it into the current <code>AppDomain</code> and find the <code>Type</code> of the component. Same as in the previous example.</p>
+<p>It remains to load this component into the current application. There are several ways to do this, for example, by creating your <code>RenderFragment</code>.</p>
+<pre><code class="language-html">@inject CompileService service
+
+    &lt;div class=&quot;card&quot;&gt;
+        &lt;div class=&quot;card-body&quot;&gt;
+            @Result
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+@functions
+{
+    RenderFragment Result = null;
+    string Code { get; set; }
+
+    public async Task Run()
+    {
+            var type = await service.CompileBlazor(Code);
+            if (type != null)
+            {
+                Result = builder =&gt;
+                {
+                    builder.OpenComponent(0, type);
+                    builder.CloseComponent();
+                };
+            }
+            else
+            {
+                Result = null;
+            }
+    }
+}
+
+</code></pre>
+<p><img src="/images/2018-12-15-2.png" alt="" /></p>
+<h1>Conclusion</h1>
+<p>We compiled and launched the Blazor component in the browser. Obviously, a full compilation of dynamic C# code right inside the browser can impress any developer.
+But here it is necessary to take into account such &quot;pitfalls&quot;:</p>
+<ul>
+<li>To support two-way bindings, <code>bind</code> needs additional extensions and libraries.</li>
+<li>To support <code>async, await</code>, similarly connect extension libraries</li>
+<li>Compiling nested Blazor components will require a two-step compilation.
+All these problems have already been solved and this is a topic for a separate article.</li>
+</ul>
+<p>GIT: <a href="https://github.com/BlazorComponents/CompileBlazorInBlazor">https://github.com/BlazorComponents/CompileBlazorInBlazor</a></p>
+<p>Demo: <a href="https://blazorcomponents.github.io/CompileBlazorInBlazor/">https://blazorcomponents.github.io/CompileBlazorInBlazor/</a></p>
+
+
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2019 - SamProf.Web - <a href="/Privacy">Privacy</a>
+        </div>
+    </footer>
+
+    <script src="/lib/jquery/dist/jquery.js"></script>
+    <script src="/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    <script src="/js/site.js?v=dLGP40S79Xnx6GqUthRF6NWvjvhQ1nOvdVSwaNcgG18"></script>
+
+    
+</body>
+</html>

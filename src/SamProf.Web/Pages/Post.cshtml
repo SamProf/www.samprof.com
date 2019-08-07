@@ -1,0 +1,10 @@
+﻿@page "/{year}/{month}/{day}/{name}"
+@model SamProf.Web.Pages.PostModel
+@{
+    ViewData["Title"] = "Post";
+}
+
+<h1>Post</h1>
+
+
+@Html.Raw(Model.PostText)

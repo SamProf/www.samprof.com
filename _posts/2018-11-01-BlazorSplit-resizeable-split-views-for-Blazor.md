@@ -12,5 +12,5 @@ Resizable panels for Blazor
 
 <!--more-->
 
-![](/images/blazorsplit-demo.gif)
+![](images/blazorsplit-demo.gif)
 

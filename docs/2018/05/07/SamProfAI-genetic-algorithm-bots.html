@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Post - SamProf.Web</title>
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="/css/site.css" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" href="/">SamProf.Web</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" href="/">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" href="/Privacy">Privacy</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            
+<h1>Post</h1>
+
+
+<hr />
+<h2>title: Мир ботов и генетический алгоритм
+date: 2018-05-07 00:00:00 Z
+layout: post</h2>
+<p>![](images/Screenshot 2018-05-06 19.30.59.png)</p>
+<p>Примерно пол года назад набрел на видео о том, как человек сделал искусственный интеллект. И это видео полностью перевернуло мое понимание того, чего можно добиться с помощью ИИ.</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/SfEZSyvbj2w" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<p>И вот я приболел и решил сделать нечто похожее.
+Итак, я тоже сделал маленьких синих ботов, которые будут самостоятельно выживать в мире.
+Боты имеют мозг - микропрограмму, которая является геномом бота, которая будет создаваться и эволюционировать сама.
+Мозг - 64 ячейки памяти (чисел). Каждое число - команда.</p>
+<p>Команды:</p>
+<ul>
+<li>ходить,</li>
+<li>повернуться</li>
+<li>схаватить еду или преобразовать яд в еду,</li>
+<li>посмотреть что в соседней ячейке,</li>
+<li>безусловный переход</li>
+<li>добавил дальнее зрение (посмоотреть на ячейку дальше соседних)</li>
+</ul>
+<p>В начале все йчейки заполняются случайными числами, потом боты помешаются в мир, где они могут за ход выполнить 1 команду хода и до других 10 команд.</p>
+<p>Если бот попал на еду, ему добавляется 10 здоровья, если на яд - он умирает. Каждый ход бот теряет 1 здоровья. Когда здоровье доходит до 0, бот умирает.</p>
+<p>После каждой симуляции жизни мира новое поколение составляют только лучшие боты с предыдущей симуляции и плюс добавляются мутации (случайной изменение нескольких ячеек памяти на случайные числа).</p>
+<p>В итоге боты начинают эволюционировать и с каждым поколением боты становятся умнее.</p>
+<p>Если пройти несколько поколений (несколько тысяч), то боты уже вполне могут жить. Для быстрой симуляции большого количества поколений - нажать на кнопку Fast by Generations. Потом можно вернуться на Slow by Step.</p>
+<p>В целом идея слизана с этого видео и немного развита. Код написан на TypeScript/JS и выложен на GitHub.</p>
+<p>Ссылка на демо: <a href="https://samprof.github.io/SamProfAI/#/world?autoStart=true">SamProfAI Demo</a></p>
+
+
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2019 - SamProf.Web - <a href="/Privacy">Privacy</a>
+        </div>
+    </footer>
+
+    <script src="/lib/jquery/dist/jquery.js"></script>
+    <script src="/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    <script src="/js/site.js?v=dLGP40S79Xnx6GqUthRF6NWvjvhQ1nOvdVSwaNcgG18"></script>
+
+    
+</body>
+</html>

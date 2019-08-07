@@ -1,0 +1,25 @@
+﻿@page
+@using SamProf.Web.Core
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+<div>
+    @foreach (var post in Model.Posts.OrderByDescending(i => i.Path))
+    {
+        <a href="@Url.StaticPage("/Post", new { Year = post.Year, Month = post.Month, Day = post.Day, Name = post.Name })">
+            <h4>@post.Path</h4>
+        </a>
+    }
+</div>
+
+
+<form action="" method="post">
+    <button type="submit">Generate</button>
+</form>
