@@ -18,66 +18,37 @@
     <link rel="stylesheet" href="/style.css">
 
     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<script>
-  (adsbygoogle = window.adsbygoogle || []).push({
-    google_ad_client: "ca-pub-3904134905954949",
-    enable_page_level_ads: true
-  });
-</script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-3904134905954949",
+            enable_page_level_ads: true
+        });
+    </script>
 </head>
 <body>
 
 <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-primary">
-    <a class="navbar-brand" href="https://www.samprof.com">{{ site.name }}</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
-            aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+    <div class="container">
+        <a class="navbar-brand" href="https://www.samprof.com">{{ site.name }}</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+                aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="/">Blog</a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="/about">About me</a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="https://github.com/SamProf">GitHub</a>
-            </li>
-
-
-        </ul>
-
-        <div class="my-2 my-lg-0" style="display: flex;">
-
-		<!-- AddToAny BEGIN -->
-<div class="a2a_kit a2a_kit_size_32 a2a_default_style">
-<a class="a2a_dd" href="https://www.addtoany.com/share"></a>
-<a class="a2a_button_facebook"></a>
-<a class="a2a_button_twitter"></a>
-<a class="a2a_button_google_plus"></a>
-<a class="a2a_button_reddit"></a>
-<a class="a2a_button_linkedin"></a>
-<a class="a2a_button_email"></a>
-<a class="a2a_button_tumblr"></a>
-</div>
-<script async src="https://static.addtoany.com/menu/page.js"></script>
-<!-- AddToAny END -->
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">Blog</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/about">About me</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="https://github.com/SamProf">GitHub</a>
+                </li>
 
 
-            <!--LiveInternet counter-->
-            <script type="text/javascript">
-                document.write("<a href='//www.liveinternet.ru/click' " +
-                    "target=_blank><img src='//counter.yadro.ru/hit?t19.6;r" +
-                    escape(document.referrer) + ((typeof(screen) == "undefined") ? "" :
-                        ";s" + screen.width + "*" + screen.height + "*" + (screen.colorDepth ?
-                        screen.colorDepth : screen.pixelDepth)) + ";u" + escape(document.URL) +
-                    ";h" + escape(document.title.substring(0, 150)) + ";" + Math.random() +
-                    "' alt='' title='LiveInternet: показано число просмотров за 24" +
-                    " часа, посетителей за 24 часа и за сегодня' " +
-                    "border='0' width='88' height='31'><\/a>")
-            </script><!--/LiveInternet-->
+            </ul>
         </div>
     </div>
 </nav>
@@ -88,9 +59,18 @@
             <div class="col-12 col-md-9">
 
                 <script type="text/javascript">
-                    ( function() {
-                        if (window.CHITIKA === undefined) { window.CHITIKA = { 'units' : [] }; };
-                        var unit = {"calltype":"async[2]","publisher":"SamProf","width":728,"height":90,"sid":"Chitika Default"};
+                    (function () {
+                        if (window.CHITIKA === undefined) {
+                            window.CHITIKA = {'units': []};
+                        }
+                        ;
+                        var unit = {
+                            "calltype": "async[2]",
+                            "publisher": "SamProf",
+                            "width": 728,
+                            "height": 90,
+                            "sid": "Chitika Default"
+                        };
                         var placement_id = window.CHITIKA.units.length;
                         window.CHITIKA.units.push(unit);
                         document.write('<div id="chitikaAdBlock-' + placement_id + '"></div>');
@@ -113,16 +93,25 @@
                 </div>
 
 
-<script type="text/javascript">
-  ( function() {
-    if (window.CHITIKA === undefined) { window.CHITIKA = { 'units' : [] }; };
-    var unit = {"calltype":"async[2]","publisher":"SamProf","width":160,"height":600,"sid":"Chitika Default"};
-    var placement_id = window.CHITIKA.units.length;
-    window.CHITIKA.units.push(unit);
-    document.write('<div id="chitikaAdBlock-' + placement_id + '"></div>');
-}());
-</script>
-<script type="text/javascript" src="//cdn.chitika.net/getads.js" async></script>
+                <script type="text/javascript">
+                    (function () {
+                        if (window.CHITIKA === undefined) {
+                            window.CHITIKA = {'units': []};
+                        }
+                        ;
+                        var unit = {
+                            "calltype": "async[2]",
+                            "publisher": "SamProf",
+                            "width": 160,
+                            "height": 600,
+                            "sid": "Chitika Default"
+                        };
+                        var placement_id = window.CHITIKA.units.length;
+                        window.CHITIKA.units.push(unit);
+                        document.write('<div id="chitikaAdBlock-' + placement_id + '"></div>');
+                    }());
+                </script>
+                <script type="text/javascript" src="//cdn.chitika.net/getads.js" async></script>
 
             </div>
         </div>
