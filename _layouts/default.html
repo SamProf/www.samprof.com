@@ -55,68 +55,8 @@
 
 <main role="main">
     <div class="container">
-        <div class="row">
-            <div class="col-12 col-md-9">
-
-                <script type="text/javascript">
-                    (function () {
-                        if (window.CHITIKA === undefined) {
-                            window.CHITIKA = {'units': []};
-                        }
-                        ;
-                        var unit = {
-                            "calltype": "async[2]",
-                            "publisher": "SamProf",
-                            "width": 728,
-                            "height": 90,
-                            "sid": "Chitika Default"
-                        };
-                        var placement_id = window.CHITIKA.units.length;
-                        window.CHITIKA.units.push(unit);
-                        document.write('<div id="chitikaAdBlock-' + placement_id + '"></div>');
-                    }());
-                </script>
-                <script type="text/javascript" src="//cdn.chitika.net/getads.js" async></script>
-
-                {{ content }}
-            </div>
-            <div class="col-12 col-md-3">
-                <div class="shadow-sm p-3 mb-5 bg-white rounded">
-                    <div>
-                        <b>Latest posts</b>
-                    </div>
-                    <ul class="list-unstyled">
-                        {% for post in site.posts limit:10 %}
-                        <li><a href="{{ post.url}}">{{ post.title }}</a></li>
-                        {% endfor %}
-                    </ul>
-                </div>
-
-
-                <script type="text/javascript">
-                    (function () {
-                        if (window.CHITIKA === undefined) {
-                            window.CHITIKA = {'units': []};
-                        }
-                        ;
-                        var unit = {
-                            "calltype": "async[2]",
-                            "publisher": "SamProf",
-                            "width": 160,
-                            "height": 600,
-                            "sid": "Chitika Default"
-                        };
-                        var placement_id = window.CHITIKA.units.length;
-                        window.CHITIKA.units.push(unit);
-                        document.write('<div id="chitikaAdBlock-' + placement_id + '"></div>');
-                    }());
-                </script>
-                <script type="text/javascript" src="//cdn.chitika.net/getads.js" async></script>
-
-            </div>
-        </div>
+        {{ content }}
     </div>
-
 </main><!-- /.container -->
 
 
