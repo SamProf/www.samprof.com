@@ -6,6 +6,7 @@ tags:
 layout: post
 ---
 
+
 ![](/images/blazor.png)
 
 Blazor is an experimental .NET web framework using C# and HTML that runs in the browser.
