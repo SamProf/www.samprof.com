@@ -1,3 +1,8 @@
+---
+title: Blazor The Future Of Full Stack Development Ru
+date: 2019-09-08 00:00:00 Z
+---
+
 ## Blazor - будущее Full-Stack разработки
 
 
